@@ -9,14 +9,13 @@ package negocio;
  * @author usuario
  */
 public class hojaVida {
-    private int idHojaVida;
-    private trabajador idTrabajador;
+    private int idHojaVida, idTrabajador;
     private String detalle, adjunto;
 
     public hojaVida() {
     }
 
-    public hojaVida(int idHojaVida, trabajador idTrabajador, String detalle, String adjunto) {
+    public hojaVida(int idHojaVida, int idTrabajador, String detalle, String adjunto) {
         this.idHojaVida = idHojaVida;
         this.idTrabajador = idTrabajador;
         this.detalle = detalle;
@@ -31,11 +30,11 @@ public class hojaVida {
         this.idHojaVida = idHojaVida;
     }
 
-    public trabajador getIdTrabajador() {
+    public int getIdTrabajador() {
         return idTrabajador;
     }
 
-    public void setIdTrabajador(trabajador idTrabajador) {
+    public void setIdTrabajador(int idTrabajador) {
         this.idTrabajador = idTrabajador;
     }
 
@@ -54,5 +53,6 @@ public class hojaVida {
     public void setAdjunto(String adjunto) {
         this.adjunto = adjunto;
     }
+
     
 }

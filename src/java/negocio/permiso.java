@@ -9,15 +9,13 @@ package negocio;
  * @author usuario
  */
 public class permiso {
-    private int idPermiso;
-    private tipoPermiso idTipoPermiso;
-    private trabajador idTrabajador;
+    private int idPermiso, idTipoPermiso, idTrabajador;
     private String fechaPermiso, adjunto, detalle;
 
     public permiso() {
     }
 
-    public permiso(int idPermiso, tipoPermiso idTipoPermiso, trabajador idTrabajador, String fechaPermiso, String adjunto, String detalle) {
+    public permiso(int idPermiso, int idTipoPermiso, int idTrabajador, String fechaPermiso, String adjunto, String detalle) {
         this.idPermiso = idPermiso;
         this.idTipoPermiso = idTipoPermiso;
         this.idTrabajador = idTrabajador;
@@ -34,19 +32,19 @@ public class permiso {
         this.idPermiso = idPermiso;
     }
 
-    public tipoPermiso getIdTipoPermiso() {
+    public int getIdTipoPermiso() {
         return idTipoPermiso;
     }
 
-    public void setIdTipoPermiso(tipoPermiso idTipoPermiso) {
+    public void setIdTipoPermiso(int idTipoPermiso) {
         this.idTipoPermiso = idTipoPermiso;
     }
 
-    public trabajador getIdTrabajador() {
+    public int getIdTrabajador() {
         return idTrabajador;
     }
 
-    public void setIdTrabajador(trabajador idTrabajador) {
+    public void setIdTrabajador(int idTrabajador) {
         this.idTrabajador = idTrabajador;
     }
 
@@ -73,5 +71,6 @@ public class permiso {
     public void setDetalle(String detalle) {
         this.detalle = detalle;
     }
+
     
 }

@@ -9,22 +9,19 @@ package negocio;
  * @author usuario
  */
 public class asistencia {
-    private int idAsistencia;
-    private String horaIngreso, horaSalida, fecha,observacion;
-    private boolean feriado;
-    private trabajador idTrabajador;
+    private int idAsistencia, idTrabajador;
+    private String fecha,horaIngreso, horaSalida ,observacion;
 
     public asistencia() {
     }
 
-    public asistencia(int idAsistencia, String horaIngreso, String horaSalida, String fecha, String observacion, boolean feriado, trabajador idTrabajador) {
+    public asistencia(int idAsistencia, int idTrabajador,String fecha, String horaIngreso, String horaSalida,  String observacion) {
         this.idAsistencia = idAsistencia;
+        this.idTrabajador = idTrabajador;
+        this.fecha = fecha;
         this.horaIngreso = horaIngreso;
         this.horaSalida = horaSalida;
-        this.fecha = fecha;
         this.observacion = observacion;
-        this.feriado = feriado;
-        this.idTrabajador = idTrabajador;
     }
 
     public int getIdAsistencia() {
@@ -33,6 +30,14 @@ public class asistencia {
 
     public void setIdAsistencia(int idAsistencia) {
         this.idAsistencia = idAsistencia;
+    }
+
+    public int getIdTrabajador() {
+        return idTrabajador;
+    }
+
+    public void setIdTrabajador(int idTrabajador) {
+        this.idTrabajador = idTrabajador;
     }
 
     public String getHoraIngreso() {
@@ -65,22 +70,6 @@ public class asistencia {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
-    }
-
-    public boolean isFeriado() {
-        return feriado;
-    }
-
-    public void setFeriado(boolean feriado) {
-        this.feriado = feriado;
-    }
-
-    public trabajador getIdTrabajador() {
-        return idTrabajador;
-    }
-
-    public void setIdTrabajador(trabajador idTrabajador) {
-        this.idTrabajador = idTrabajador;
     }
     
 }

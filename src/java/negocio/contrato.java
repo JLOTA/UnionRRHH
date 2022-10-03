@@ -9,14 +9,13 @@ package negocio;
  * @author usuario
  */
 public class contrato {
-    private int idContrato;
-    private tipoContrato idTipoContrato;
+    private int idContrato, idTipoContrato;
     private String descripcion, fechaInicio, fechaFin;
 
     public contrato() {
     }
 
-    public contrato(int idContrato, tipoContrato idTipoContrato, String descripcion, String fechaInicio, String fechaFin) {
+    public contrato(int idContrato, int idTipoContrato, String descripcion, String fechaInicio, String fechaFin) {
         this.idContrato = idContrato;
         this.idTipoContrato = idTipoContrato;
         this.descripcion = descripcion;
@@ -32,11 +31,11 @@ public class contrato {
         this.idContrato = idContrato;
     }
 
-    public tipoContrato getIdTipoContrato() {
+    public int getIdTipoContrato() {
         return idTipoContrato;
     }
 
-    public void setIdTipoContrato(tipoContrato idTipoContrato) {
+    public void setIdTipoContrato(int idTipoContrato) {
         this.idTipoContrato = idTipoContrato;
     }
 
@@ -63,5 +62,5 @@ public class contrato {
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
+
 }

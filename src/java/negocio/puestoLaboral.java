@@ -11,30 +11,17 @@ package negocio;
 public class puestoLaboral {
     private int idPuestoLaboral;
     private int idArea;
-    private int idHorario;
     private String puestoLaboral, descripcion;
 
     public puestoLaboral() {
     }
 
-    public puestoLaboral(int idPuestoLaboral, int idArea, int idHorario, String puestoLaboral, String descripcion) {
+    public puestoLaboral(int idPuestoLaboral, int idArea, String puestoLaboral, String descripcion) {
         this.idPuestoLaboral = idPuestoLaboral;
         this.idArea = idArea;
-        this.idHorario = idHorario;
         this.puestoLaboral = puestoLaboral;
         this.descripcion = descripcion;
     }
-
-
-
-    public String getPuestoLaboral() {
-        return puestoLaboral;
-    }
-
-    public void setPuestoLaboral(String puestoLaboral) {
-        this.puestoLaboral = puestoLaboral;
-    }
-
 
     public int getIdPuestoLaboral() {
         return idPuestoLaboral;
@@ -52,17 +39,13 @@ public class puestoLaboral {
         this.idArea = idArea;
     }
 
-    public int getIdHorario() {
-        return idHorario;
+    public String getPuestoLaboral() {
+        return puestoLaboral;
     }
 
-    public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
+    public void setPuestoLaboral(String puestoLaboral) {
+        this.puestoLaboral = puestoLaboral;
     }
-
-
-
-
 
     public String getDescripcion() {
         return descripcion;

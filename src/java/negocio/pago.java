@@ -9,16 +9,14 @@ package negocio;
  * @author usuario
  */
 public class pago {
-    private int idPago;
-    private tipoPago idtipoPago;
-    private trabajador idTrabajador;
+    private int idPago, idtipoPago, idTrabajador;
     private String fechaPago;
     private double sueldoBase, seguro, asignacionFamiliar;
 
     public pago() {
     }
 
-    public pago(int idPago, tipoPago idtipoPago, trabajador idTrabajador, String fechaPago, double sueldoBase, double seguro, double asignacionFamiliar) {
+    public pago(int idPago, int idtipoPago, int idTrabajador, String fechaPago, double sueldoBase, double seguro, double asignacionFamiliar) {
         this.idPago = idPago;
         this.idtipoPago = idtipoPago;
         this.idTrabajador = idTrabajador;
@@ -36,19 +34,19 @@ public class pago {
         this.idPago = idPago;
     }
 
-    public tipoPago getIdtipoPago() {
+    public int getIdtipoPago() {
         return idtipoPago;
     }
 
-    public void setIdtipoPago(tipoPago idtipoPago) {
+    public void setIdtipoPago(int idtipoPago) {
         this.idtipoPago = idtipoPago;
     }
 
-    public trabajador getIdTrabajador() {
+    public int getIdTrabajador() {
         return idTrabajador;
     }
 
-    public void setIdTrabajador(trabajador idTrabajador) {
+    public void setIdTrabajador(int idTrabajador) {
         this.idTrabajador = idTrabajador;
     }
 
@@ -83,4 +81,6 @@ public class pago {
     public void setAsignacionFamiliar(double asignacionFamiliar) {
         this.asignacionFamiliar = asignacionFamiliar;
     }
+
+    
 }
