@@ -13,11 +13,8 @@ import negocio.horario;
  */
 public interface daoHorario {
     public void Registrar(horario horario) throws Exception;
-
     public List<horario> listar() throws Exception;
-
     public void actualizar(horario horario) throws Exception;
-
-    public horario leer(horario horario) throws Exception;
-    public void eliminar(horario horario) throws Exception;
+    public horario leer(int idHorario ) throws Exception;
+    public void eliminar(int idHorario) throws Exception;
 }

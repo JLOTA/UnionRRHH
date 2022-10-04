@@ -24,9 +24,9 @@ public class daoHorarioImp implements daoHorario {
 
         sql = "Insert Into Horario (idHorario, horario, horaInicio, horaFin) "
                 + "Values(0, '"
-                + horario.getHorario() + "', "
-                + horario.getHoraInicio() + ", "
-                + horario.getHoraFin() + ")";
+                + horario.getHorario() + "', '"
+                + horario.getHoraInicio() + "', '"
+                + horario.getHoraFin() + "')";
 
         con = new Conexion();
         try {
@@ -101,8 +101,8 @@ public class daoHorarioImp implements daoHorario {
 
         sql = "UPDATE Horario SET horario = '"
                 + horario.getHorario()+ "', horaInicio = '"
-                + horario.getHoraInicio()+ "', horaFin = "
-                + horario.getHoraFin()+ "' WHERE ID_Producto = " + horario.getIdHorario();
+                + horario.getHoraInicio()+ "', horaFin = '"
+                + horario.getHoraFin()+ "' WHERE idHorario = " + horario.getIdHorario();
 
         con = new Conexion();
         try {
@@ -124,13 +124,13 @@ public class daoHorarioImp implements daoHorario {
     }
 
     @Override
-    public horario leer(horario horario) throws Exception {
+    public horario leer(int idHorario) throws Exception {
         horario hor = null;
         Conexion con;
         Connection cn = null;
         Statement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * from horario WHERE idHorario = " + horario.getIdHorario();
+        String sql = "SELECT * from horario WHERE idHorario = " + idHorario;
 
         con = new Conexion();
         try {
@@ -139,7 +139,7 @@ public class daoHorarioImp implements daoHorario {
             rs = st.executeQuery(sql);
             if (rs.next() == true) {
                 hor = new horario();
-                hor.setIdHorario(horario.getIdHorario());
+                hor.setIdHorario(rs.getInt("idHorario"));
                 hor.setHorario(rs.getString("horario"));
                 hor.setHoraInicio(rs.getString("horaInicio"));
                 hor.setHoraFin(rs.getString("horaFin"));
@@ -164,12 +164,12 @@ public class daoHorarioImp implements daoHorario {
     }
 
     @Override
-    public void eliminar(horario horario) throws Exception {
+    public void eliminar(int idHorario) throws Exception {
         Conexion con;
         Connection cn = null;
         Statement st = null;
         String sql;
-        sql = "DELETE FROM horario WHERE idHorario=" + horario.getIdHorario();
+        sql = "DELETE FROM horario WHERE idHorario=" + idHorario;
         con = new Conexion();
         try {
             cn = con.conectar();
