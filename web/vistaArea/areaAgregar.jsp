@@ -1,6 +1,6 @@
 <%-- 
-    Document   : horarioAgregar
-    Created on : 03-oct-2022, 18:16:13
+    Document   : areaAgregar
+    Created on : 03-oct-2022, 22:38:23
     Author     : usuario
 --%>
 
@@ -15,29 +15,25 @@
     <body>
         <div class="container">
             <div class="col-lg-6">
-                <h1>Agregar Horario</h1>
+                <h1>Agregar Area</h1>
                 <form>
                     <table>
                         <tr style="display: none">
                             <td>ID</td>
-                            <td><input type="text" name="idHor"></td>
+                            <td><input type="text" name="idAr"></td>
                         </tr>
                         <tr>
-                            <td>Horario</td>
-                            <td><input class="form-control" type="text" name="ho"></td>
+                            <td>Area</td>
+                            <td><input class="form-control" type="text" name="ar"></td>
                         </tr>
                         <tr>
-                            <td>Hora Entrada</td>
-                            <td><input class="form-control" type="time" name="horIni"></td>
-                        </tr>
-                        <tr>
-                            <td>Hora Salida</td>
-                            <td><input class="form-control" type="time" name="horFin"></td>
+                            <td>Descripcion</td>
+                            <td><input class="form-control" type="text" name="des"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input class="btn btn-primary" type="submit" name="accion" value="Registrar Horario">
-                                <a href="horarioControl?accion=horarioListar">Regresar</a>
+                                <input class="btn btn-primary" type="submit" name="accion" value="Registrar Area">
+                                <a href="areaControl?accion=areaListar">Regresar</a>
                             </td>
                         </tr>
                     </table>
