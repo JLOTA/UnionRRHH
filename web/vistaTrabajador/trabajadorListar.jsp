@@ -1,9 +1,3 @@
-<%-- 
-    Document   : trabajadorListar
-    Created on : 04-oct-2022, 22:48:53
-    Author     : usuario
---%>
-
 <%@page import="negocio.*"%>
 <%@page import="java.util.*"%>
 <%@page import="negocio.trabajador"%>
@@ -77,8 +71,8 @@
                         <td class="text-center"><%= tra.getTelefono()%></td>
                         <td class="text-center"><%= tra.getCorreo()%></td>
                         <td class="text-center"><%= tra.getDireccion()%></td>
-                        <td class="text-center"><a class="btn btn-warning" href="puestoLaboralControl?accion=puestoLaboralEditar&id=<%= tra.getIdTrabajador()%>">Modificar</a></td>
-                        <td class="text-center"><a class="btn btn-danger" href="puestoLaboralControl?accion=puestoLaboralEliminar&id=<%= tra.getIdTrabajador()%>">Eliminar</a></td>
+                        <td class="text-center"><a class="btn btn-warning" href="trabajadorControl?accion=trabajadorEditar&id=<%= tra.getIdTrabajador()%>">Modificar</a></td>
+                        <td class="text-center"><a class="btn btn-danger" href="trabajadorControl?accion=trabajadorEliminar&id=<%= tra.getIdTrabajador()%>">Eliminar</a></td>
                     </tr>
                     <%}%>
                 </tbody>

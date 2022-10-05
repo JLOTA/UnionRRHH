@@ -1,9 +1,3 @@
-<%-- 
-    Document   : horarioListar
-    Created on : 03-oct-2022, 18:15:51
-    Author     : usuario
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="negocio.horario"%>
 <%@page import="java.util.Iterator"%>

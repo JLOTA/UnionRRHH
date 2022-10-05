@@ -1,9 +1,3 @@
-<%-- 
-    Document   : areaListar
-    Created on : 03-oct-2022, 22:38:49
-    Author     : usuario
---%>
-
 <%@page import="java.util.*"%>
 <%@page import="negocio.area"%>
 <%@page import="persistencia.*"%>

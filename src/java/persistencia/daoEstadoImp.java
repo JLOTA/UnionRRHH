@@ -126,7 +126,7 @@ public class daoEstadoImp implements daoEstado{
         Connection cn = null;
         Statement st = null;
         ResultSet rs = null;
-        String sql = "SELECT * from estado WHERE idArea = " + idEstado;
+        String sql = "SELECT * from estado WHERE idEstado = " + idEstado;
 
         con = new Conexion();
         try {

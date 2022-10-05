@@ -82,7 +82,7 @@ public class daoTrabajadorImp implements daoTrabajador{
                 hor.setDni(rs.getString("dni"));
                 hor.setNombres(rs.getString("nombres"));
                 hor.setApePat(rs.getString("apellidoPaterno"));
-                hor.setApeMat(rs.getString("apelidomaterno"));
+                hor.setApeMat(rs.getString("apellidoMaterno"));
                 hor.setFecNac(rs.getString("fechaNacimiento"));
                 hor.setTelefono(rs.getString("telefono"));
                 hor.setCorreo(rs.getString("correo"));
@@ -173,7 +173,7 @@ public class daoTrabajadorImp implements daoTrabajador{
                 hor.setDni(rs.getString("dni"));
                 hor.setNombres(rs.getString("nombres"));
                 hor.setApePat(rs.getString("apellidoPaterno"));
-                hor.setApeMat(rs.getString("apelidomaterno"));
+                hor.setApeMat(rs.getString("apellidoMaterno"));
                 hor.setFecNac(rs.getString("fechaNacimiento"));
                 hor.setTelefono(rs.getString("telefono"));
                 hor.setCorreo(rs.getString("correo"));

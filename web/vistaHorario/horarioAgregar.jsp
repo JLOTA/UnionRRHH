@@ -1,9 +1,3 @@
-<%-- 
-    Document   : horarioAgregar
-    Created on : 03-oct-2022, 18:16:13
-    Author     : usuario
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

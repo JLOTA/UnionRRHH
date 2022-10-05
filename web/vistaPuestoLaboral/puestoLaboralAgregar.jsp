@@ -1,9 +1,3 @@
-<%-- 
-    Document   : puestoLaboralAgregar
-    Created on : 04-oct-2022, 17:02:53
-    Author     : usuario
---%>
-
 <%@page import="persistencia.*"%>
 <%@page import="java.util.*"%>
 <%@page import="negocio.area"%>

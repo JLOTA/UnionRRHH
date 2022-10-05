@@ -1,9 +1,3 @@
-<%-- 
-    Document   : contratoAgregar
-    Created on : 04-oct-2022, 21:09:59
-    Author     : usuario
---%>
-
 <%@page import="java.util.*"%>
 <%@page import="negocio.tipoContrato"%>
 <%@page import="persistencia.*"%>

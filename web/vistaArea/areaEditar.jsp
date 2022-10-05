@@ -1,9 +1,3 @@
-<%-- 
-    Document   : areaEditar
-    Created on : 03-oct-2022, 22:38:33
-    Author     : usuario
---%>
-
 <%@page import="negocio.area"%>
 <%@page import="persistencia.daoAreaImp"%>
 <%@page import="persistencia.daoArea"%>

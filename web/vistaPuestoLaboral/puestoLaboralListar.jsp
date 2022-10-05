@@ -1,9 +1,3 @@
-<%-- 
-    Document   : puestoLaboralListar
-    Created on : 04-oct-2022, 17:03:29
-    Author     : usuario
---%>
-
 <%@page import="negocio.area"%>
 <%@page import="java.util.*"%>
 <%@page import="negocio.puestoLaboral"%>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : contratoListar
-    Created on : 04-oct-2022, 21:10:17
-    Author     : usuario
---%>
-
 <%@page import="java.util.*"%>
 <%@page import="negocio.*"%>
 <%@page import="persistencia.*"%>

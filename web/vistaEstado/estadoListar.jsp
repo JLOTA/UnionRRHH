@@ -1,9 +1,3 @@
-<%-- 
-    Document   : estadoListar
-    Created on : 04-oct-2022, 20:28:52
-    Author     : usuario
---%>
-
 <%@page import="java.util.*"%>
 <%@page import="negocio.estado"%>
 <%@page import="persistencia.*"%>

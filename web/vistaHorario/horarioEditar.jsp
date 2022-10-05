@@ -1,9 +1,3 @@
-<%-- 
-    Document   : horarioEditar
-    Created on : 03-oct-2022, 18:16:01
-    Author     : usuario
---%>
-
 <%@page import="negocio.horario"%>
 <%@page import="persistencia.daoHorarioImp"%>
 <%@page import="persistencia.daoHorario"%>

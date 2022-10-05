@@ -1,9 +1,3 @@
-<%-- 
-    Document   : areaAgregar
-    Created on : 03-oct-2022, 22:38:23
-    Author     : usuario
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

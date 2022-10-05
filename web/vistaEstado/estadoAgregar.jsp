@@ -1,9 +1,3 @@
-<%-- 
-    Document   : estadoAgregar
-    Created on : 04-oct-2022, 20:28:32
-    Author     : usuario
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

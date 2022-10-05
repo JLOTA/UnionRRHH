@@ -1,9 +1,3 @@
-<%-- 
-    Document   : puestoLaboralEditar
-    Created on : 04-oct-2022, 17:03:14
-    Author     : usuario
---%>
-
 <%@page import="persistencia.*"%>
 <%@page import="java.util.*"%>
 <%@page import="negocio.*"%>

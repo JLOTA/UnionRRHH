@@ -1,9 +1,3 @@
-<%-- 
-    Document   : trabajadorEditar
-    Created on : 04-oct-2022, 22:48:44
-    Author     : usuario
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
