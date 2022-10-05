@@ -4,6 +4,7 @@
     Author     : usuario
 --%>
 
+<%@page import="negocio.area"%>
 <%@page import="java.util.*"%>
 <%@page import="negocio.puestoLaboral"%>
 <%@page import="persistencia.*"%>
@@ -41,7 +42,15 @@
                 <tbody>
                     <tr>
                         <td class="text-center"><%= hor.getIdPuestoLaboral()%></td>
-                        <td class="text-center"><%= hor.getIdArea()%></td>
+                        <%
+            daoArea arDao = new daoAreaImp();
+            area h = (area) arDao.leer(hor.getIdArea());
+        %>
+                        <td class="text-center">
+                            
+                            <%= h.getArea()%>
+                        </td>
+                        
                         <td class="text-center"><%= hor.getPuestoLaboral()%></td>
                         <td class="text-center"><%= hor.getDescripcion()%></td>
                         <td class="text-center"><a class="btn btn-warning" href="puestoLaboralControl?accion=puestoLaboralEditar&id=<%= hor.getIdPuestoLaboral()%>">Modificar</a></td>
