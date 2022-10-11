@@ -109,7 +109,7 @@ public class trabajadorControl extends HttpServlet {
             acceso = listarTrabajador;
         }
         else if(action.equalsIgnoreCase("trabajadorEditar")){
-            request.setAttribute("idPul", request.getParameter("id"));
+            request.setAttribute("idT", request.getParameter("id"));
             acceso=editarTrabajador;
         }
         else if(action.equalsIgnoreCase("Actualizar Trabajador")){

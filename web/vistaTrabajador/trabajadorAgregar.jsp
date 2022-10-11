@@ -10,6 +10,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="../navBar.jsp" %>
         <div class="container">
             <h1>Agregar Trabajador</h1>
             <form>

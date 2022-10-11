@@ -17,7 +17,7 @@
         %>
         <div class="container">
             <div class="col-lg-6">
-                <h1>Agregar Cargo</h1>
+                <h1>Editar Cargo</h1>
                 <form>
                     <table>
                         <tr style="display: none">

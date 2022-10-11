@@ -118,8 +118,8 @@ public class daoTrabajadorImp implements daoTrabajador{
 
         sql = "UPDATE trabajador SET idPuestoLaboral = "
                 + trabajador.getIdPuestoLaboral()+ ", idContrato = "
-                + trabajador.getIdContrato()+ ", idHorario = '"
-                + trabajador.getIdHorario()+ ", idEstado = '"
+                + trabajador.getIdContrato()+ ", idHorario = "
+                + trabajador.getIdHorario()+ ", idEstado = "
                 + trabajador.getIdEstado()+ ", dni = '"
                 + trabajador.getDni()+ "', nombres = '"
                 + trabajador.getNombres()+ "', apellidoPaterno = '"

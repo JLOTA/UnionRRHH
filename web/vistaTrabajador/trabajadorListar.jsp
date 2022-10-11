@@ -11,6 +11,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="../navBar.jsp" %>
         <div class="container">
             <h1>Puestos</h1>
             <a class="btn btn-success" href="trabajadorControl?accion=trabajadorAgregar">Agregar Trabajador</a>
@@ -49,18 +50,18 @@
                         <%
                             daoPuestoLaboral pulDao = new daoPuestoLaboralImp();
                             puestoLaboral pl = (puestoLaboral) pulDao.leer(tra.getIdPuestoLaboral());
-                            
-                            daoContrato coDao= new daoContratoImp();
-                            contrato c= (contrato)coDao.leer(tra.getIdContrato());
-                            
+
+                            daoContrato coDao = new daoContratoImp();
+                            contrato c = (contrato) coDao.leer(tra.getIdContrato());
+
                             daoHorario hoDao = new daoHorarioImp();
-                            horario h= (horario) hoDao.leer(tra.getIdHorario());
-                            
+                            horario h = (horario) hoDao.leer(tra.getIdHorario());
+
                             daoEstado esDao = new daoEstadoImp();
-                            estado e=(estado)esDao.leer(tra.getIdEstado());
+                            estado e = (estado) esDao.leer(tra.getIdEstado());
                         %>
                         <td class="text-center"><%= pl.getPuestoLaboral()%></td>                       
-                        <td class="text-center"><%= c.getIdContrato() %></td>
+                        <td class="text-center"><%= c.getDescripcion()%></td>
                         <td class="text-center"><%= h.getHorario()%></td>
                         <td class="text-center"><%= e.getEstado()%></td>
                         <td class="text-center"><%= tra.getDni()%></td>
@@ -77,6 +78,7 @@
                     <%}%>
                 </tbody>
             </table>
-        </div>        
+        </div>  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
