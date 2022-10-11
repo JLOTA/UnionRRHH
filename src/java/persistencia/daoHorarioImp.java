@@ -16,7 +16,7 @@ import negocio.horario;
 public class daoHorarioImp implements daoHorario {
 
     @Override
-    public void Registrar(horario horario) throws Exception {
+    public void Registrar(horario horario) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -35,21 +35,12 @@ public class daoHorarioImp implements daoHorario {
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoHorarioImp.Registrar()");;
+        } 
     }
 
     @Override
-    public List<horario> listar() throws Exception {
+    public List<horario> listar(){
         List<horario> horarios = null;
         horario hor;
         Conexion con;
@@ -74,26 +65,13 @@ public class daoHorarioImp implements daoHorario {
                 horarios.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoHorarioImp.listar()");
+        } 
         return horarios;
     }
 
     @Override
-    public void actualizar(horario horario) throws Exception {
+    public void actualizar(horario horario) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -110,21 +88,12 @@ public class daoHorarioImp implements daoHorario {
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoHorarioImp.actualizar()");;
         }
     }
 
     @Override
-    public horario leer(int idHorario) throws Exception {
+    public horario leer(int idHorario) {
         horario hor = null;
         Conexion con;
         Connection cn = null;
@@ -145,26 +114,13 @@ public class daoHorarioImp implements daoHorario {
                 hor.setHoraFin(rs.getString("horaFin"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoHorarioImp.leer()");
         }
         return hor;
     }
 
     @Override
-    public void eliminar(int idHorario) throws Exception {
+    public void eliminar(int idHorario) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -176,7 +132,7 @@ public class daoHorarioImp implements daoHorario {
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoHorarioImp.eliminar()");
         }
     }
 

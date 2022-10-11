@@ -6,15 +6,17 @@ package persistencia;
 
 import java.util.List;
 import negocio.puestoLaboral;
+import util.utilEmpresa;
 
 /**
  *
  * @author usuario
  */
 public interface daoPuestoLaboral {
-    public void Registrar(puestoLaboral puestoLaboral) throws Exception;
-    public List<puestoLaboral> listar() throws Exception;
-    public void actualizar(puestoLaboral puestoLaboral) throws Exception;
-    public puestoLaboral leer(int idPuestoLaboral ) throws Exception;
-    public void eliminar(int idPuestoLaboral) throws Exception;
+    public void Registrar(puestoLaboral puestoLaboral);
+    public List<puestoLaboral> listar();
+    public void actualizar(puestoLaboral puestoLaboral);
+    public puestoLaboral leer(int idPuestoLaboral );
+    public void eliminar(int idPuestoLaboral);
+    public List<utilEmpresa> listarFull();
 }

@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import negocio.puestoLaboral;
+import util.utilEmpresa;
 
 /**
  *
@@ -15,7 +16,7 @@ import negocio.puestoLaboral;
  */
 public class daoPuestoLaboralImp implements daoPuestoLaboral{
     @Override
-    public void Registrar(puestoLaboral puestoLaboral) throws Exception {
+    public void Registrar(puestoLaboral puestoLaboral){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -34,21 +35,12 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println(e);
         }
     }
 
     @Override
-    public List<puestoLaboral> listar() throws Exception {
+    public List<puestoLaboral> listar(){
         List<puestoLaboral> puestos = null;
         puestoLaboral hor;
         Conexion con;
@@ -73,26 +65,13 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
                 puestos.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoPuestoLaboralImp.listar()");
+        } 
         return puestos;
     }
 
     @Override
-    public void actualizar(puestoLaboral puestoLaboral) throws Exception {
+    public void actualizar(puestoLaboral puestoLaboral){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -109,21 +88,12 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoPuestoLaboralImp.actualizar()");
+        } 
     }
 
     @Override
-    public puestoLaboral leer(int idPuestoLaboral) throws Exception {
+    public puestoLaboral leer(int idPuestoLaboral){
         puestoLaboral hor = null;
         Conexion con;
         Connection cn = null;
@@ -144,38 +114,59 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
                 hor.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoPuestoLaboralImp.leer()");
+        } 
         return hor;
     }
 
     @Override
-    public void eliminar(int idPuestoLaboral) throws Exception {
+    public void eliminar(int idPuestoLaboral){
         Conexion con;
         Connection cn = null;
         Statement st = null;
         String sql;
-        sql = "DELETE FROM puestoLaboral WHERE idPuestoLaboral=" + idPuestoLaboral;
+        sql = "DELETE FROM puestolaboral WHERE idPuestoLaboral=" + idPuestoLaboral;
         con = new Conexion();
         try {
             cn = con.conectar();
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoPuestoLaboralImp.eliminar()");
+            System.out.println(sql);
+            System.out.println(e);
         }
+    }
+
+    @Override
+    public List<utilEmpresa> listarFull() {
+        List<utilEmpresa> puestos = null;
+        utilEmpresa hor;
+        Conexion con;
+        Connection cn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        String sql = "SELECT pl.idPuestoLaboral, pl.idArea, pl.puestoLaboral, pl.descripcion, a.area FROM puestolaboral pl inner join area a on pl.idArea=a.idArea order by pl.idPuestoLaboral";
+
+        con = new Conexion();
+        try {
+            cn = con.conectar();
+            st = cn.createStatement();
+            rs = st.executeQuery(sql);
+            puestos = new ArrayList<>();
+            while (rs.next() == true) {
+                hor = new utilEmpresa();
+                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
+                hor.setIdArea(rs.getInt("idArea"));
+                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
+                hor.setDescripcion(rs.getString("descripcion"));
+                hor.setArea(rs.getString("area"));
+
+                puestos.add(hor);
+            }
+        } catch (Exception e) {
+            System.out.println("persistencia.daoPuestoLaboralImp.listar()");
+        } 
+        return puestos;
     }
 }

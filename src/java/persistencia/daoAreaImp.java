@@ -16,7 +16,7 @@ import negocio.area;
 public class daoAreaImp implements daoArea{
 
     @Override
-    public void Registrar(area area) throws Exception {
+    public void Registrar(area area){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -34,21 +34,12 @@ public class daoAreaImp implements daoArea{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoAreaImp.Registrar()");;
+        } 
     }
 
     @Override
-    public List<area> listar() throws Exception {
+    public List<area> listar() {
         List<area> horarios = null;
         area hor;
         Conexion con;
@@ -72,26 +63,13 @@ public class daoAreaImp implements daoArea{
                 horarios.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoAreaImp.listar()");
+        } 
         return horarios;
     }
 
     @Override
-    public void actualizar(area area) throws Exception {
+    public void actualizar(area area){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -107,21 +85,12 @@ public class daoAreaImp implements daoArea{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoAreaImp.actualizar()");
+        } 
     }
 
     @Override
-    public area leer(int idArea) throws Exception {
+    public area leer(int idArea){
         area hor = null;
         Conexion con;
         Connection cn = null;
@@ -141,26 +110,13 @@ public class daoAreaImp implements daoArea{
                 hor.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoAreaImp.leer()");
+        } 
         return hor;
     }
 
     @Override
-    public void eliminar(int idArea) throws Exception {
+    public void eliminar(int idArea){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -172,7 +128,7 @@ public class daoAreaImp implements daoArea{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoAreaImp.eliminar()");
         }
     }
     

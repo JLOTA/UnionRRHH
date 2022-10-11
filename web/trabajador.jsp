@@ -1,3 +1,9 @@
+<%-- 
+    Document   : trabajador
+    Created on : 10-oct-2022, 19:34:28
+    Author     : usuario
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
