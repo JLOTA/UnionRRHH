@@ -1,15 +1,17 @@
 package negocio;
 
 public class administrador {
-    private int idAdministrador, idTrabajador;
+
+    private int idAdministrador;
+    private trabajador tra;
     private String usuario, clave;
 
     public administrador() {
     }
 
-    public administrador(int idAdministrador, int idTrabajador, String usuario, String clave) {
+    public administrador(int idAdministrador, trabajador tra, String usuario, String clave) {
         this.idAdministrador = idAdministrador;
-        this.idTrabajador = idTrabajador;
+        this.tra = tra;
         this.usuario = usuario;
         this.clave = clave;
     }
@@ -22,12 +24,12 @@ public class administrador {
         this.idAdministrador = idAdministrador;
     }
 
-    public int getIdTrabajador() {
-        return idTrabajador;
+    public trabajador getTra() {
+        return tra;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setTra(trabajador tra) {
+        this.tra = tra;
     }
 
     public String getUsuario() {
@@ -45,5 +47,5 @@ public class administrador {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    
+
 }

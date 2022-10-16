@@ -7,8 +7,8 @@ package persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import negocio.area;
 import negocio.puestoLaboral;
-import util.utilEmpresa;
 
 /**
  *
@@ -24,7 +24,7 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
 
         sql = "Insert Into puestoLaboral "
                 + "Values(0, '"
-                + puestoLaboral.getIdArea()+ "', '"
+                + puestoLaboral.getArea().getIdArea()+ "', '"
                 + puestoLaboral.getPuestoLaboral()+ "', '"
                 + puestoLaboral.getDescripcion()+ "')";
 
@@ -58,7 +58,10 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             while (rs.next() == true) {
                 hor = new puestoLaboral();
                 hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdArea(rs.getInt("idArea"));
+                area a= new area();
+                daoArea da = new daoAreaImp();
+                a=da.leer(rs.getInt("idArea"));
+                hor.setArea(a);
                 hor.setPuestoLaboral(rs.getString("puestoLaboral"));
                 hor.setDescripcion(rs.getString("descripcion"));
 
@@ -78,7 +81,7 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
         String sql;
 
         sql = "UPDATE puestoLaboral SET idArea = "
-                + puestoLaboral.getIdArea()+ ", puestoLaboral = '"
+                + puestoLaboral.getArea().getIdArea()+ ", puestoLaboral = '"
                 + puestoLaboral.getPuestoLaboral()+ "', descripcion = '"
                 + puestoLaboral.getDescripcion()+ "' WHERE idPuestoLaboral = " + puestoLaboral.getIdPuestoLaboral();
 
@@ -109,8 +112,11 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             if (rs.next() == true) {
                 hor = new puestoLaboral();
                 hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdArea(rs.getInt("idArea"));
-                hor.setPuestoLaboral(rs.getString("puestolaboral"));
+                area a= new area();
+                daoArea da = new daoAreaImp();
+                a=da.leer(rs.getInt("idArea"));
+                hor.setArea(a);
+                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
                 hor.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {
@@ -136,37 +142,5 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             System.out.println(sql);
             System.out.println(e);
         }
-    }
-
-    @Override
-    public List<utilEmpresa> listarFull() {
-        List<utilEmpresa> puestos = null;
-        utilEmpresa hor;
-        Conexion con;
-        Connection cn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        String sql = "SELECT pl.idPuestoLaboral, pl.idArea, pl.puestoLaboral, pl.descripcion, a.area FROM puestolaboral pl inner join area a on pl.idArea=a.idArea order by pl.idPuestoLaboral";
-
-        con = new Conexion();
-        try {
-            cn = con.conectar();
-            st = cn.createStatement();
-            rs = st.executeQuery(sql);
-            puestos = new ArrayList<>();
-            while (rs.next() == true) {
-                hor = new utilEmpresa();
-                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdArea(rs.getInt("idArea"));
-                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
-                hor.setDescripcion(rs.getString("descripcion"));
-                hor.setArea(rs.getString("area"));
-
-                puestos.add(hor);
-            }
-        } catch (Exception e) {
-            System.out.println("persistencia.daoPuestoLaboralImp.listar()");
-        } 
-        return puestos;
     }
 }

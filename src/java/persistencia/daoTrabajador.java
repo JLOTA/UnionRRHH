@@ -6,7 +6,6 @@ package persistencia;
 
 import java.util.List;
 import negocio.trabajador;
-import util.utilTrabajador;
 
 /**
  *
@@ -15,8 +14,8 @@ import util.utilTrabajador;
 public interface daoTrabajador {
     public void Registrar(trabajador trabajador);
     public List<trabajador> listar();
-    public List<utilTrabajador> listarFull();
     public void actualizar(trabajador trabajador);
     public trabajador leer(int idTrabajador );
+    public trabajador leerDni(String dni );
     public void eliminar(int idTrabajador);
 }

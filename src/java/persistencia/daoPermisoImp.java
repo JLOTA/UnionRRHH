@@ -53,12 +53,10 @@ public class daoPermisoImp implements daoPermiso{
             while (rs.next() == true) {
                 p = new permiso();
                 p.setIdPermiso(rs.getInt("idPermiso"));
-                tipoPermiso tipo = new tipoPermiso();
-                tipo = leerTipo(rs.getInt("idTipoPermiso"));
+                tipoPermiso tipo = leerTipo(rs.getInt("idTipoPermiso"));
                 p.setTipPer(tipo);
-                trabajador tra = new trabajador();
                 daoTrabajador dt = new daoTrabajadorImp();
-                tra = dt.leer(rs.getInt("idTrabajador"));
+                trabajador tra = dt.leer(rs.getInt("idTrabajador"));
                 p.setTra(tra);
                 p.setFecPer(rs.getString("fechaPermiso"));
                 p.setAdjunto(rs.getString("adjunto"));

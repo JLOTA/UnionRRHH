@@ -99,7 +99,7 @@
                                 <td>${tr.getApeMat()}</td>
                                 <td>${tr.getTelefono()}</td>
                                 <td>${tr.getCorreo()}</td>
-                                <td>${tr.getEstado()}</td>
+                                <td>${tr.getEst().getEstado()}</td>
                                 <td>
                                     <a class="btn btn-outline-warning" href="control?menu=trabajador&acc=editar&id=${tr.getIdTrabajador()}"><i class="bi bi-pencil-square"></i></a>
                                 </td>

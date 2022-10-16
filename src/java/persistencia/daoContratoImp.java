@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import negocio.contrato;
 import negocio.tipoContrato;
-import util.utilContrato;
 
 /**
  *
@@ -143,7 +142,7 @@ public class daoContratoImp implements daoContrato{
 
         sql = "Insert Into contrato "
                 + "Values(0, '"
-                + contrato.getIdTipoContrato()+ "', '"
+                + contrato.getTipCon().getIdTipoContrato()+ "', '"
                 + contrato.getDescripcion()+ "', '"
                 + contrato.getFechaInicio()+ "', '"
                 + contrato.getFechaFin()+ "')";
@@ -178,7 +177,8 @@ public class daoContratoImp implements daoContrato{
             while (rs.next() == true) {
                 hor = new contrato();
                 hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdTipoContrato(rs.getInt("idTipoContrato"));
+                tipoContrato tc = leerTipo(rs.getInt("idTipoContrato"));
+                hor.setTipCon(tc);
                 hor.setDescripcion(rs.getString("descripcion"));
                 hor.setFechaInicio(rs.getString("fechaInicio"));
                 hor.setFechaFin(rs.getString("fechaFin"));
@@ -199,7 +199,7 @@ public class daoContratoImp implements daoContrato{
         String sql;
 
         sql = "UPDATE contrato SET idTipoContrato = "
-                + contrato.getIdTipoContrato()+ ", descripcion = '"
+                + contrato.getTipCon().getIdTipoContrato()+ ", descripcion = '"
                 + contrato.getDescripcion()+ "', fechaInicio = '"
                 + contrato.getFechaInicio()+ "', fechaFin = '"
                 + contrato.getFechaFin()+ "' WHERE idContrato = " + contrato.getIdContrato();
@@ -231,7 +231,8 @@ public class daoContratoImp implements daoContrato{
             if (rs.next() == true) {
                 hor = new contrato();
                 hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdTipoContrato(rs.getInt("idTipoContrato"));
+                tipoContrato tc = leerTipo(rs.getInt("idTipoContrato"));
+                hor.setTipCon(tc);
                 hor.setDescripcion(rs.getString("descripcion"));
                 hor.setFechaInicio(rs.getString("fechaInicio"));
                 hor.setFechaFin(rs.getString("fechaFin"));
@@ -257,40 +258,5 @@ public class daoContratoImp implements daoContrato{
         } catch (Exception e) {
             System.out.println("persistencia.daoContratoImp.eliminar()");
         }
-    }
-
-    @Override
-    public List<utilContrato> listarFull() {
-        List<utilContrato> contratos = null;
-        utilContrato hor;
-        Conexion con;
-        Connection cn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        String sql = "SELECT c.idContrato, c.idTipoContrato, tc.tipoContrato, c.descripcion, "
-                + "c.fechaInicio, c.fechaFin FROM contrato c inner join tipocontrato tc "
-                + "on c.idTipoContrato = tc.idTipoContrato order by c.idContrato";
-
-        con = new Conexion();
-        try {
-            cn = con.conectar();
-            st = cn.createStatement();
-            rs = st.executeQuery(sql);
-            contratos = new ArrayList<>();
-            while (rs.next() == true) {
-                hor = new utilContrato();
-                hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdTipoContrato(rs.getInt("idTipoContrato"));
-                hor.setDescripcion(rs.getString("descripcion"));
-                hor.setFechaInicio(rs.getString("fechaInicio"));
-                hor.setFechaFin(rs.getString("fechaFin"));
-                hor.setTipoContrato(rs.getString("tipoContrato"));
-                contratos.add(hor);
-            }
-        } catch (Exception e) {
-            System.out.println("persistencia.daoContratoImp.listarFull()");
-        } 
-        return contratos;
-    }
-    
+    }   
 }

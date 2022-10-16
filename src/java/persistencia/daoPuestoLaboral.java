@@ -6,7 +6,6 @@ package persistencia;
 
 import java.util.List;
 import negocio.puestoLaboral;
-import util.utilEmpresa;
 
 /**
  *
@@ -18,5 +17,4 @@ public interface daoPuestoLaboral {
     public void actualizar(puestoLaboral puestoLaboral);
     public puestoLaboral leer(int idPuestoLaboral );
     public void eliminar(int idPuestoLaboral);
-    public List<utilEmpresa> listarFull();
 }

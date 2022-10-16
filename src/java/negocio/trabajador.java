@@ -9,18 +9,22 @@ package negocio;
  * @author usuario
  */
 public class trabajador {
-    private int idTrabajador, idPuestoLaboral, idContrato,idHorario, idEstado;
+    private int idTrabajador;
+    private puestoLaboral pueLab;
+    private contrato con;
+    private horario hor;
+    private estado est;
     private String dni, nombres, apePat, apeMat, fecNac, telefono, correo, direccion;
 
     public trabajador() {
     }
 
-    public trabajador(int idTrabajador, int idPuestoLaboral, int idContrato, int idHorario, int idEstado, String dni, String nombres, String apePat, String apeMat, String fecNac, String telefono, String correo, String direccion) {
+    public trabajador(int idTrabajador, puestoLaboral pueLab, contrato con, horario hor, estado est, String dni, String nombres, String apePat, String apeMat, String fecNac, String telefono, String correo, String direccion) {
         this.idTrabajador = idTrabajador;
-        this.idPuestoLaboral = idPuestoLaboral;
-        this.idContrato = idContrato;
-        this.idHorario = idHorario;
-        this.idEstado = idEstado;
+        this.pueLab = pueLab;
+        this.con = con;
+        this.hor = hor;
+        this.est = est;
         this.dni = dni;
         this.nombres = nombres;
         this.apePat = apePat;
@@ -39,36 +43,36 @@ public class trabajador {
         this.idTrabajador = idTrabajador;
     }
 
-    public int getIdPuestoLaboral() {
-        return idPuestoLaboral;
+    public puestoLaboral getPueLab() {
+        return pueLab;
     }
 
-    public void setIdPuestoLaboral(int idPuestoLaboral) {
-        this.idPuestoLaboral = idPuestoLaboral;
+    public void setPueLab(puestoLaboral pueLab) {
+        this.pueLab = pueLab;
     }
 
-    public int getIdContrato() {
-        return idContrato;
+    public contrato getCon() {
+        return con;
     }
 
-    public void setIdContrato(int idContrato) {
-        this.idContrato = idContrato;
+    public void setCon(contrato con) {
+        this.con = con;
     }
 
-    public int getIdHorario() {
-        return idHorario;
+    public horario getHor() {
+        return hor;
     }
 
-    public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
+    public void setHor(horario hor) {
+        this.hor = hor;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public estado getEst() {
+        return est;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setEst(estado est) {
+        this.est = est;
     }
 
     public String getDni() {
@@ -134,5 +138,6 @@ public class trabajador {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
+
+        
 }

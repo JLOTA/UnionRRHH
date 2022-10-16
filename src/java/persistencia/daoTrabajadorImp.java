@@ -7,8 +7,11 @@ package persistencia;
 import java.sql.*;
 import java.util.*;
 import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
+import negocio.contrato;
+import negocio.estado;
+import negocio.horario;
+import negocio.puestoLaboral;
 import negocio.trabajador;
-import util.utilTrabajador;
 
 /**
  *
@@ -24,10 +27,10 @@ public class daoTrabajadorImp implements daoTrabajador{
 
         sql = "Insert Into trabajador "
                 + "Values(0, '"
-                + trabajador.getIdPuestoLaboral()+ "', '"
-                + trabajador.getIdContrato()+ "', '"
-                + trabajador.getIdHorario()+ "', '"
-                + trabajador.getIdEstado()+ "', '"
+                + trabajador.getPueLab().getIdPuestoLaboral()+ "', '"
+                + trabajador.getCon().getIdContrato()+ "', '"
+                + trabajador.getHor().getIdHorario()+ "', '"
+                + trabajador.getEst().getIdEstado()+ "', '"
                 + trabajador.getDni()+ "', '"
                 + trabajador.getNombres()+ "', '"
                 + trabajador.getApePat()+ "', '"
@@ -67,10 +70,18 @@ public class daoTrabajadorImp implements daoTrabajador{
             while (rs.next() == true) {
                 hor = new trabajador();
                 hor.setIdTrabajador(rs.getInt("idTrabajador"));
-                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdHorario(rs.getInt("idHorario"));
-                hor.setIdEstado(rs.getInt("idEstado"));
+                daoPuestoLaboral dpl = new daoPuestoLaboralImp();
+                puestoLaboral pp = dpl.leer(rs.getInt("idPuestoLaboral"));
+                hor.setPueLab(pp);
+                daoContrato dc = new daoContratoImp();
+                contrato cc= dc.leer(rs.getInt("idContrato"));
+                hor.setCon(cc);
+                daoHorario dh = new daoHorarioImp();
+                horario hh=dh.leer(rs.getInt("idHorario"));
+                hor.setHor(hh);
+                daoEstado de = new daoEstadoImp();
+                estado ee= de.leer(rs.getInt("idEstado"));
+                hor.setEst(ee);
                 hor.setDni(rs.getString("dni"));
                 hor.setNombres(rs.getString("nombres"));
                 hor.setApePat(rs.getString("apellidoPaterno"));
@@ -96,10 +107,10 @@ public class daoTrabajadorImp implements daoTrabajador{
         String sql;
 
         sql = "UPDATE trabajador SET idPuestoLaboral = "
-                + trabajador.getIdPuestoLaboral()+ ", idContrato = "
-                + trabajador.getIdContrato()+ ", idHorario = "
-                + trabajador.getIdHorario()+ ", idEstado = "
-                + trabajador.getIdEstado()+ ", dni = '"
+                + trabajador.getPueLab().getIdPuestoLaboral()+ ", idContrato = "
+                + trabajador.getCon().getIdContrato()+ ", idHorario = "
+                + trabajador.getHor().getIdHorario()+ ", idEstado = "
+                + trabajador.getEst().getIdEstado()+ ", dni = '"
                 + trabajador.getDni()+ "', nombres = '"
                 + trabajador.getNombres()+ "', apellidoPaterno = '"
                 + trabajador.getApePat()+ "', apellidoMaterno = '"
@@ -136,10 +147,18 @@ public class daoTrabajadorImp implements daoTrabajador{
             if (rs.next() == true) {
                 hor=new trabajador();
                 hor.setIdTrabajador(rs.getInt("idTrabajador"));
-                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdHorario(rs.getInt("idHorario"));
-                hor.setIdEstado(rs.getInt("idEstado"));
+                daoPuestoLaboral dpl = new daoPuestoLaboralImp();
+                puestoLaboral pp = dpl.leer(rs.getInt("idPuestoLaboral"));
+                hor.setPueLab(pp);
+                daoContrato dc = new daoContratoImp();
+                contrato cc= dc.leer(rs.getInt("idContrato"));
+                hor.setCon(cc);
+                daoHorario dh = new daoHorarioImp();
+                horario hh=dh.leer(rs.getInt("idHorario"));
+                hor.setHor(hh);
+                daoEstado de = new daoEstadoImp();
+                estado ee= de.leer(rs.getInt("idEstado"));
+                hor.setEst(ee);
                 hor.setDni(rs.getString("dni"));
                 hor.setNombres(rs.getString("nombres"));
                 hor.setApePat(rs.getString("apellidoPaterno"));
@@ -173,37 +192,34 @@ public class daoTrabajadorImp implements daoTrabajador{
     }
 
     @Override
-    public List<utilTrabajador> listarFull() {
-        List<utilTrabajador> trabajadores = null;
-        utilTrabajador hor;
+    public trabajador leerDni(String dni) {
+        trabajador hor = null;
         Conexion con;
         Connection cn = null;
         Statement st = null;
         ResultSet rs = null;
-        String sql = "SELECT t.idTrabajador, t.idPuestoLaboral, pl.puestoLaboral, t.idContrato, c.descripcion, t.idHorario, h.horario, t.idEstado, e.estado, t.dni, t.nombres, t.apellidoPaterno, t.apellidoMaterno, t.fechaNacimiento, t.telefono, t.correo, t.direccion FROM trabajador t \n" +
-"inner join puestolaboral pl on t.idPuestoLaboral = pl.idPuestoLaboral \n" +
-"inner join contrato c on t.idContrato = c.idContrato\n" +
-"inner join horario h on t.idHorario = h.idHorario\n" +
-"inner join estado e on t.idEstado = e.idEstado\n" +
-"order by t.idTrabajador";
+        String sql = "SELECT * from trabajador WHERE dni = " + dni;
 
         con = new Conexion();
         try {
             cn = con.conectar();
             st = cn.createStatement();
             rs = st.executeQuery(sql);
-            trabajadores = new ArrayList<>();
-            while (rs.next() == true) {
-                hor = new utilTrabajador();
+            if (rs.next() == true) {
+                hor=new trabajador();
                 hor.setIdTrabajador(rs.getInt("idTrabajador"));
-                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
-                hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setContrato(rs.getString("descripcion"));
-                hor.setIdHorario(rs.getInt("idHorario"));
-                hor.setHorario(rs.getString("horario"));
-                hor.setIdEstado(rs.getInt("idEstado"));
-                hor.setEstado(rs.getString("estado"));
+                daoPuestoLaboral dpl = new daoPuestoLaboralImp();
+                puestoLaboral pp = dpl.leer(rs.getInt("idPuestoLaboral"));
+                hor.setPueLab(pp);
+                daoContrato dc = new daoContratoImp();
+                contrato cc= dc.leer(rs.getInt("idContrato"));
+                hor.setCon(cc);
+                daoHorario dh = new daoHorarioImp();
+                horario hh=dh.leer(rs.getInt("idHorario"));
+                hor.setHor(hh);
+                daoEstado de = new daoEstadoImp();
+                estado ee= de.leer(rs.getInt("idEstado"));
+                hor.setEst(ee);
                 hor.setDni(rs.getString("dni"));
                 hor.setNombres(rs.getString("nombres"));
                 hor.setApePat(rs.getString("apellidoPaterno"));
@@ -212,13 +228,11 @@ public class daoTrabajadorImp implements daoTrabajador{
                 hor.setTelefono(rs.getString("telefono"));
                 hor.setCorreo(rs.getString("correo"));
                 hor.setDireccion(rs.getString("direccion"));
-
-                trabajadores.add(hor);
             }
         } catch (Exception e) {
-            System.out.println("persistencia.daoTrabajadorImp.listarFull()");
+            System.out.println("persistencia.daoTrabajadorImp.leer()");
         } 
-        return trabajadores;
+        return hor;
     }
     
 }

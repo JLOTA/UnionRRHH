@@ -9,16 +9,19 @@ package negocio;
  * @author usuario
  */
 public class familiar {
-    private int idFamiliar, idTipoFamiliar, idTrabajador;
+
+    private int idFamiliar;
+    private tipoFamiliar tipFam;
+    private trabajador tra;
     private String dni, nombres, apePat, apeMat, fecNac;
 
     public familiar() {
     }
 
-    public familiar(int idFamiliar, int idTipoFamiliar, int idTrabajador, String dni, String nombres, String apePat, String apeMat, String fecNac) {
+    public familiar(int idFamiliar, tipoFamiliar tipFam, trabajador tra, String dni, String nombres, String apePat, String apeMat, String fecNac) {
         this.idFamiliar = idFamiliar;
-        this.idTipoFamiliar = idTipoFamiliar;
-        this.idTrabajador = idTrabajador;
+        this.tipFam = tipFam;
+        this.tra = tra;
         this.dni = dni;
         this.nombres = nombres;
         this.apePat = apePat;
@@ -34,20 +37,20 @@ public class familiar {
         this.idFamiliar = idFamiliar;
     }
 
-    public int getIdTipoFamiliar() {
-        return idTipoFamiliar;
+    public tipoFamiliar getTipFam() {
+        return tipFam;
     }
 
-    public void setIdTipoFamiliar(int idTipoFamiliar) {
-        this.idTipoFamiliar = idTipoFamiliar;
+    public void setTipFam(tipoFamiliar tipFam) {
+        this.tipFam = tipFam;
     }
 
-    public int getIdTrabajador() {
-        return idTrabajador;
+    public trabajador getTra() {
+        return tra;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setTra(trabajador tra) {
+        this.tra = tra;
     }
 
     public String getDni() {
@@ -89,6 +92,6 @@ public class familiar {
     public void setFecNac(String fecNac) {
         this.fecNac = fecNac;
     }
-    
+
     
 }
