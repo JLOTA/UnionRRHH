@@ -11,4 +11,5 @@ public interface daoPermiso {
     public void eliminar(int idPermiso);
     
     public tipoPermiso leerTipo(int idTipo);
+    public List<tipoPermiso> listarTipo();
 }

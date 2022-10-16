@@ -27,7 +27,7 @@ public class control extends HttpServlet {
     daoArea areDao = new daoAreaImp();
     area a = new area();
     int idAr = 0;
-    
+
     daoContrato conDao = new daoContratoImp();
     contrato c = new contrato();
     int idCo = 0;
@@ -35,15 +35,15 @@ public class control extends HttpServlet {
     daoHorario horDao = new daoHorarioImp();
     horario h = new horario();
     int idHo = 0;
-    
+
     daoEstado estDao = new daoEstadoImp();
     estado e = new estado();
     int idEs = 0;
-    
+
     daoPuestoLaboral pulDao = new daoPuestoLaboralImp();
     puestoLaboral pl = new puestoLaboral();
     int idPu = 0;
-    
+
     daoPermiso daoPer = new daoPermisoImp();
     permiso p = new permiso();
     int idPe = 0;
@@ -75,7 +75,7 @@ public class control extends HttpServlet {
                     int idCon = Integer.parseInt(request.getParameter("idCon"));
                     int idHor = Integer.parseInt(request.getParameter("idHor"));
                     //int idEst = Integer.parseInt(request.getParameter("idEst"));
-                    
+
                     String dni = request.getParameter("dni");
                     String nom = request.getParameter("nom");
                     String apePat = request.getParameter("apePat");
@@ -84,7 +84,7 @@ public class control extends HttpServlet {
                     String tel = request.getParameter("tel");
                     String cor = request.getParameter("cor");
                     String dir = request.getParameter("dir");
-                    
+
                     t.setIdContrato(idCon);
                     t.setIdEstado(2);
                     t.setIdHorario(idHor);
@@ -111,7 +111,7 @@ public class control extends HttpServlet {
                     int iCon = Integer.parseInt(request.getParameter("idCon"));
                     int iHor = Integer.parseInt(request.getParameter("idHor"));
                     //int iEst = Integer.parseInt(request.getParameter("idEst"));
-                    
+
                     String dn = request.getParameter("dni");
                     String no = request.getParameter("nom");
                     String apPat = request.getParameter("apePat");
@@ -120,7 +120,7 @@ public class control extends HttpServlet {
                     String te = request.getParameter("tel");
                     String co = request.getParameter("cor");
                     String di = request.getParameter("dir");
-                    
+
                     t.setIdContrato(iCon);
                     t.setIdEstado(2);
                     t.setIdHorario(iHor);
@@ -234,41 +234,61 @@ public class control extends HttpServlet {
         if (menu.equals("permiso")) {
             switch (acc) {
                 case "listar":
-                    List<permiso> lista = daoPer.listar();
-                    request.setAttribute("permisos", lista);
+                    List<permiso> permisos = daoPer.listar();
+                    request.setAttribute("permisos", permisos);
+                    List<tipoPermiso> tipos = daoPer.listarTipo();
+                    request.setAttribute("tipos", tipos);
+                    List<trabajador> trabajadores = traDao.listar();
+                    request.setAttribute("trabajadores", trabajadores);
                     break;
                 case "Agregar":
-                    /*String are = request.getParameter("are");
+                    int idTip = Integer.parseInt(request.getParameter("idTip"));
+                    tipoPermiso tp = daoPer.leerTipo(idTip);
+                    int idTra = Integer.parseInt(request.getParameter("idTra"));
+                    trabajador te = traDao.leer(idTra);
+                    String fecPer = request.getParameter("fecPer");
+                    String adj = request.getParameter("adj");
                     String des = request.getParameter("des");
-                    a.setArea(are);
-                    a.setDescripcion(des);
-                    areDao.Registrar(a);
-                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);
+                    p.setTipPer(tp);
+                    p.setTra(te);
+                    p.setFecPer(fecPer);
+                    p.setAdjunto(adj);
+                    p.setDetalle(des);
+                    daoPer.Registrar(p);
+                    request.getRequestDispatcher("control?menu=permiso&acc=listar").forward(request, response);
                     break;
                 case "editar":
-                    idAr = Integer.parseInt(request.getParameter("id"));
-                    area aa = areDao.leer(idAr);
-                    request.setAttribute("area", aa);
-                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);
+                    idPe = Integer.parseInt(request.getParameter("id"));
+                    permiso pp = daoPer.leer(idPe);
+                    request.setAttribute("permiso", pp);
+                    request.getRequestDispatcher("control?menu=permiso&acc=listar").forward(request, response);
                     break;
                 case "Actualizar":
-                    String ar = request.getParameter("are");
+                    int iTip = Integer.parseInt(request.getParameter("idTip"));
+                    tipoPermiso tpp = daoPer.leerTipo(iTip);
+                    int iTra = Integer.parseInt(request.getParameter("idTra"));
+                    trabajador tee = traDao.leer(iTra);
+                    String fePer = request.getParameter("fecPer");
+                    String ad = request.getParameter("adj");
                     String de = request.getParameter("des");
-                    a.setArea(ar);
-                    a.setDescripcion(de);
-                    a.setIdArea(idAr);
-                    areDao.actualizar(a);
-                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);
+                    p.setTipPer(tpp);
+                    p.setTra(tee);
+                    p.setFecPer(fePer);
+                    p.setAdjunto(ad);
+                    p.setDetalle(de);
+                    p.setIdPermiso(idPe);
+                    daoPer.actualizar(p);
+                    request.getRequestDispatcher("control?menu=permiso&acc=listar").forward(request, response);
                     break;
                 case "eliminar":
-                    idAr = Integer.parseInt(request.getParameter("id"));
-                    areDao.eliminar(idAr);
-                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);*/
+                    idPe = Integer.parseInt(request.getParameter("id"));
+                    daoPer.eliminar(idPe);
+                    request.getRequestDispatcher("control?menu=permiso&acc=listar").forward(request, response);
                     break;
                 default:
                     throw new AssertionError();
             }
-            request.getRequestDispatcher("area.jsp").forward(request, response);
+            request.getRequestDispatcher("permiso.jsp").forward(request, response);
         }
         if (menu.equals("estado")) {
             switch (acc) {

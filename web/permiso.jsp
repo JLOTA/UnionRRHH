@@ -17,23 +17,31 @@
                     <form action="control?menu=permiso" method="post">
                         <div class="form-group">
                             <label>Categoria</label>
-                            <input type="text" value="${area.getArea()}" name="tipCat" class="form-control form-control-sm">
+                            <select class="form-select form-select-sm" name="idTip">
+                                <c:forEach var="ti" items="${tipos}">
+                                    <option value="${ti.getIdTipoPermiso()}">${ti.getTipoPermiso()}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Empleado</label>
-                            <input type="text" value="${area.getArea()}" name="tra" class="form-control form-control-sm">
+                            <select class="form-select form-select-sm" name="idTra">
+                                <c:forEach var="tr" items="${trabajadores}">
+                                    <option value="${tr.getIdTrabajador()}">${tr.getDni()} - ${tr.getNombres()} ${tr.getApePat()}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Fecha Permiso</label>
-                            <input type="date" value="${area.getArea()}" name="fecPer" class="form-control form-control-sm">
+                            <input type="date" value="${permiso.getFecPer()}" name="fecPer" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label>Adjunto</label>
-                            <input type="text" value="${area.getArea()}" name="adj" class="form-control form-control-sm">
+                            <input type="text" value="${permiso.getAdjunto()}" name="adj" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label>Descripcion</label>
-                            <textarea name="des" class="form-control form-control-sm" rows="5">${area.getDescripcion()}</textarea>
+                            <textarea name="des" class="form-control form-control-sm" rows="5">${permiso.getDetalle()}</textarea>
                         </div><br>
                         <input type="submit" name="acc" value="Agregar" class="btn btn-info btn-outline-light">
                         <input type="submit" name="acc" value="Actualizar" class="btn btn-success btn-outline-light">
@@ -56,14 +64,14 @@
                         <c:forEach var="pe" items="${permisos}">
                             <tr>
                                 <td>${pe.getTipPer().getTipoPermiso()}</td>
-                                <td>${pe.gteTra().getNombres()}</td>
-                                <td>${pe.getFechaPermiso()}</td>
+                                <td>${pe.getTra().getNombres()}</td>
+                                <td>${pe.getFecPer()}</td>
                                 <td>${pe.getDetalle()}</td>
                                 <td>
-                                    <a class="btn btn-outline-warning" href="control?menu=area&acc=editar&id=${pe.getIdPermiso()}"><i class="bi bi-pencil-square"></i></a>
+                                    <a class="btn btn-outline-warning" href="control?menu=permiso&acc=editar&id=${pe.getIdPermiso()}"><i class="bi bi-pencil-square"></i></a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-danger" href="control?menu=area&acc=eliminar&id=${pe.getIdPermiso()}"><i class="bi bi-trash"></i></a>
+                                    <a class="btn btn-outline-danger" href="control?menu=permiso&acc=eliminar&id=${pe.getIdPermiso()}"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>

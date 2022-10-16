@@ -61,7 +61,7 @@ public class daoPermisoImp implements daoPermiso{
                 tra = dt.leer(rs.getInt("idTrabajador"));
                 p.setTra(tra);
                 p.setFecPer(rs.getString("fechaPermiso"));
-                p.setFecPer(rs.getString("adjunto"));
+                p.setAdjunto(rs.getString("adjunto"));
                 p.setDetalle(rs.getString("descripcion"));
 
                 permisos.add(p);
@@ -74,7 +74,26 @@ public class daoPermisoImp implements daoPermiso{
 
     @Override
     public void actualizar(permiso permiso) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Conexion con;
+        Connection cn = null;
+        Statement st = null;
+        String sql;
+
+        sql = "UPDATE permiso SET idTipoPermiso = "
+                + permiso.getTipPer().getIdTipoPermiso()+ ", idTrabajador = "
+                + permiso.getTra().getIdTrabajador()+ ", fechaPermiso = '"
+                + permiso.getFecPer()+ "', adjunto = '"
+                + permiso.getAdjunto()+ "', descripcion = '"
+                + permiso.getDetalle()+ "' WHERE idPermiso = " + permiso.getIdPermiso();
+
+        con = new Conexion();
+        try {
+            cn = con.conectar();
+            st = cn.createStatement();
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println("persistencia.daoPermisoImp.actualizar()");
+        } 
     }
 
     @Override
@@ -102,7 +121,7 @@ public class daoPermisoImp implements daoPermiso{
                 tra = dt.leer(rs.getInt("idTrabajador"));
                 p.setTra(tra);
                 p.setFecPer(rs.getString("fechaPermiso"));
-                p.setFecPer(rs.getString("adjunto"));
+                p.setAdjunto(rs.getString("adjunto"));
                 p.setDetalle(rs.getString("descripcion"));
             }
         } catch (Exception e) {
@@ -113,7 +132,19 @@ public class daoPermisoImp implements daoPermiso{
 
     @Override
     public void eliminar(int idPermiso) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Conexion con;
+        Connection cn = null;
+        Statement st = null;
+        String sql;
+        sql = "DELETE FROM permiso WHERE idPermiso=" + idPermiso;
+        con = new Conexion();
+        try {
+            cn = con.conectar();
+            st = cn.createStatement();
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println("persistencia.daoPermisoImp.eliminar()");
+        }
     }
 
     @Override
@@ -140,6 +171,36 @@ public class daoPermisoImp implements daoPermiso{
             System.out.println("persistencia.daoPermisoImp.leerTipo()");
         } 
         return hor;
+    }
+
+    @Override
+    public List<tipoPermiso> listarTipo() {
+        List<tipoPermiso> tipos = null;
+        tipoPermiso p;
+        Conexion con;
+        Connection cn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        String sql = "select * from tipoPermiso";
+
+        con = new Conexion();
+        try {
+            cn = con.conectar();
+            st = cn.createStatement();
+            rs = st.executeQuery(sql);
+            tipos = new ArrayList<>();
+            while (rs.next() == true) {
+                p = new tipoPermiso();
+                p.setIdTipoPermiso(rs.getInt("idTipoPermiso"));
+                p.setTipoPermiso(rs.getString("tipoPermiso"));
+                p.setDescripcion(rs.getString("descripcion"));
+
+                tipos.add(p);
+            }
+        } catch (Exception e) {
+            System.out.println("persistencia.daoPermiso.listarTipo()");
+        } 
+        return tipos;
     }
     
 }
