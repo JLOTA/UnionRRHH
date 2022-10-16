@@ -34,7 +34,7 @@ public class daoAreaImp implements daoArea{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            System.out.println("persistencia.daoAreaImp.Registrar()");;
+            System.out.println("persistencia.daoAreaImp.Registrar()");
         } 
     }
 

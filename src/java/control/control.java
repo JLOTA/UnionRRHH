@@ -43,6 +43,10 @@ public class control extends HttpServlet {
     daoPuestoLaboral pulDao = new daoPuestoLaboralImp();
     puestoLaboral pl = new puestoLaboral();
     int idPu = 0;
+    
+    daoPermiso daoPer = new daoPermisoImp();
+    permiso p = new permiso();
+    int idPe = 0;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -226,6 +230,45 @@ public class control extends HttpServlet {
                     throw new AssertionError();
             }
             request.getRequestDispatcher("puestoLaboral.jsp").forward(request, response);
+        }
+        if (menu.equals("permiso")) {
+            switch (acc) {
+                case "listar":
+                    List<permiso> lista = daoPer.listar();
+                    request.setAttribute("permisos", lista);
+                    break;
+                case "Agregar":
+                    /*String are = request.getParameter("are");
+                    String des = request.getParameter("des");
+                    a.setArea(are);
+                    a.setDescripcion(des);
+                    areDao.Registrar(a);
+                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);
+                    break;
+                case "editar":
+                    idAr = Integer.parseInt(request.getParameter("id"));
+                    area aa = areDao.leer(idAr);
+                    request.setAttribute("area", aa);
+                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    String ar = request.getParameter("are");
+                    String de = request.getParameter("des");
+                    a.setArea(ar);
+                    a.setDescripcion(de);
+                    a.setIdArea(idAr);
+                    areDao.actualizar(a);
+                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);
+                    break;
+                case "eliminar":
+                    idAr = Integer.parseInt(request.getParameter("id"));
+                    areDao.eliminar(idAr);
+                    request.getRequestDispatcher("control?menu=area&acc=listar").forward(request, response);*/
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            request.getRequestDispatcher("area.jsp").forward(request, response);
         }
         if (menu.equals("estado")) {
             switch (acc) {

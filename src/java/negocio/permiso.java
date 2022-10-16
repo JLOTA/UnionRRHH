@@ -9,17 +9,19 @@ package negocio;
  * @author usuario
  */
 public class permiso {
-    private int idPermiso, idTipoPermiso, idTrabajador;
-    private String fechaPermiso, adjunto, detalle;
+    private int idPermiso;
+    private tipoPermiso tipPer;
+    private trabajador tra;
+    private String fecPer, adjunto, detalle;
 
     public permiso() {
     }
 
-    public permiso(int idPermiso, int idTipoPermiso, int idTrabajador, String fechaPermiso, String adjunto, String detalle) {
+    public permiso(int idPermiso, tipoPermiso tipPer, trabajador tra, String fecPer, String adjunto, String detalle) {
         this.idPermiso = idPermiso;
-        this.idTipoPermiso = idTipoPermiso;
-        this.idTrabajador = idTrabajador;
-        this.fechaPermiso = fechaPermiso;
+        this.tipPer = tipPer;
+        this.tra = tra;
+        this.fecPer = fecPer;
         this.adjunto = adjunto;
         this.detalle = detalle;
     }
@@ -32,28 +34,28 @@ public class permiso {
         this.idPermiso = idPermiso;
     }
 
-    public int getIdTipoPermiso() {
-        return idTipoPermiso;
+    public tipoPermiso getTipPer() {
+        return tipPer;
     }
 
-    public void setIdTipoPermiso(int idTipoPermiso) {
-        this.idTipoPermiso = idTipoPermiso;
+    public void setTipPer(tipoPermiso tipPer) {
+        this.tipPer = tipPer;
     }
 
-    public int getIdTrabajador() {
-        return idTrabajador;
+    public trabajador getTra() {
+        return tra;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setTra(trabajador tra) {
+        this.tra = tra;
     }
 
-    public String getFechaPermiso() {
-        return fechaPermiso;
+    public String getFecPer() {
+        return fecPer;
     }
 
-    public void setFechaPermiso(String fechaPermiso) {
-        this.fechaPermiso = fechaPermiso;
+    public void setFecPer(String fecPer) {
+        this.fecPer = fecPer;
     }
 
     public String getAdjunto() {
@@ -72,5 +74,4 @@ public class permiso {
         this.detalle = detalle;
     }
 
-    
 }

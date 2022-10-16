@@ -12,11 +12,12 @@
             <div class="container-fluid" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="#">Inicio</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="#">
+                            <i class="bi bi-house"></i> Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Personas
+                            <i class="bi bi-people-fill"></i> Personas
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="control?menu=trabajador&acc=listar" target="myFrame">Empleados</a></li>
@@ -25,7 +26,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Empresa
+                            <i class="bi bi-building"></i> Empresa
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="control?menu=area&acc=listar" target="myFrame">Areas</a></li>
@@ -35,17 +36,17 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tramites
+                            <i class="bi bi-file-earmark-text-fill"></i> Tramites
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" target="myFrame">Permisos</a></li>
+                            <li><a class="dropdown-item" href="control?menu=permiso&acc=listar" target="myFrame">Permisos</a></li>
                             <li><a class="dropdown-item" href="#" target="myFrame">Vacaciones</a></li>
                             <li><a class="dropdown-item" href="#" target="myFrame">Pagos</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Informes
+                            <i class="bi bi-file-bar-graph-fill"></i> Informes
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#" target="myFrame">Asistencia</a></li>
@@ -72,7 +73,6 @@
                     </ul>
                 </div>
             </div>
-
         </nav>
         <div class="m-4" style="height: 550px;">
             <iframe name="myFrame" style="height: 100%; width: 100%">
