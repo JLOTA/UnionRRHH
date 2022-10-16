@@ -71,7 +71,7 @@ public class validar extends HttpServlet {
             try {
                 adm = admDao.validar(usu, pas);
                 if (adm.getUsuario() != null) {
-                    tra = traDao.leer(adm.getIdTrabajador());
+                    tra = traDao.leer(adm.getTra().getIdTrabajador());
                     request.setAttribute("administrador", adm);
                     request.setAttribute("trabajador", tra);
                     request.getRequestDispatcher("control?menu=inicio").forward(request, response);

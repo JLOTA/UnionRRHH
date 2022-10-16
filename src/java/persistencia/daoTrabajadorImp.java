@@ -191,54 +191,5 @@ public class daoTrabajadorImp implements daoTrabajador{
             System.out.println("persistencia.daoTrabajadorImp.eliminar()");
         }
     }
-
-    @Override
-    public List<utilTrabajador> listarFull() {
-        List<utilTrabajador> trabajadores = null;
-        utilTrabajador hor;
-        Conexion con;
-        Connection cn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        String sql = "SELECT t.idTrabajador, t.idPuestoLaboral, pl.puestoLaboral, t.idContrato, c.descripcion, t.idHorario, h.horario, t.idEstado, e.estado, t.dni, t.nombres, t.apellidoPaterno, t.apellidoMaterno, t.fechaNacimiento, t.telefono, t.correo, t.direccion FROM trabajador t \n" +
-"inner join puestolaboral pl on t.idPuestoLaboral = pl.idPuestoLaboral \n" +
-"inner join contrato c on t.idContrato = c.idContrato\n" +
-"inner join horario h on t.idHorario = h.idHorario\n" +
-"inner join estado e on t.idEstado = e.idEstado\n" +
-"order by t.idTrabajador";
-
-        con = new Conexion();
-        try {
-            cn = con.conectar();
-            st = cn.createStatement();
-            rs = st.executeQuery(sql);
-            trabajadores = new ArrayList<>();
-            while (rs.next() == true) {
-                hor = new utilTrabajador();
-                hor.setIdTrabajador(rs.getInt("idTrabajador"));
-                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
-                hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setContrato(rs.getString("descripcion"));
-                hor.setIdHorario(rs.getInt("idHorario"));
-                hor.setHorario(rs.getString("horario"));
-                hor.setIdEstado(rs.getInt("idEstado"));
-                hor.setEstado(rs.getString("estado"));
-                hor.setDni(rs.getString("dni"));
-                hor.setNombres(rs.getString("nombres"));
-                hor.setApePat(rs.getString("apellidoPaterno"));
-                hor.setApeMat(rs.getString("apellidoMaterno"));
-                hor.setFecNac(rs.getString("fechaNacimiento"));
-                hor.setTelefono(rs.getString("telefono"));
-                hor.setCorreo(rs.getString("correo"));
-                hor.setDireccion(rs.getString("direccion"));
-
-                trabajadores.add(hor);
-            }
-        } catch (Exception e) {
-            System.out.println("persistencia.daoTrabajadorImp.listarFull()");
-        } 
-        return trabajadores;
-    }
     
 }

@@ -22,7 +22,6 @@ public interface daoContrato {
     
     public void Registrar(contrato contrato);
     public List<contrato> listar();
-    public List<utilContrato> listarFull();
     public void actualizar(contrato contrato);
     public contrato leer(int idContrato );
     public void eliminar(int idContrato);

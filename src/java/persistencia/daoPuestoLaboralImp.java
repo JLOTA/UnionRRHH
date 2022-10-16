@@ -144,36 +144,4 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             System.out.println(e);
         }
     }
-
-    @Override
-    public List<utilEmpresa> listarFull() {
-        List<utilEmpresa> puestos = null;
-        utilEmpresa hor;
-        Conexion con;
-        Connection cn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        String sql = "SELECT pl.idPuestoLaboral, pl.idArea, pl.puestoLaboral, pl.descripcion, a.area FROM puestolaboral pl inner join area a on pl.idArea=a.idArea order by pl.idPuestoLaboral";
-
-        con = new Conexion();
-        try {
-            cn = con.conectar();
-            st = cn.createStatement();
-            rs = st.executeQuery(sql);
-            puestos = new ArrayList<>();
-            while (rs.next() == true) {
-                hor = new utilEmpresa();
-                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdArea(rs.getInt("idArea"));
-                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
-                hor.setDescripcion(rs.getString("descripcion"));
-                hor.setArea(rs.getString("area"));
-
-                puestos.add(hor);
-            }
-        } catch (Exception e) {
-            System.out.println("persistencia.daoPuestoLaboralImp.listar()");
-        } 
-        return puestos;
-    }
 }

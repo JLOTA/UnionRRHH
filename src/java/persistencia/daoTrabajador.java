@@ -15,7 +15,6 @@ import util.utilTrabajador;
 public interface daoTrabajador {
     public void Registrar(trabajador trabajador);
     public List<trabajador> listar();
-    public List<utilTrabajador> listarFull();
     public void actualizar(trabajador trabajador);
     public trabajador leer(int idTrabajador );
     public void eliminar(int idTrabajador);

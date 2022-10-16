@@ -3,11 +3,12 @@ package persistencia;
 import java.sql.*;
 import java.util.List;
 import negocio.administrador;
+import negocio.trabajador;
 
 public class daoAdministradorImp implements daoAdministrador {
 
     @Override
-    public administrador validar(String usuario, String clave) throws Exception {
+    public administrador validar(String usuario, String clave) {
         administrador adm = null;
         Conexion con;
         Connection cn = null;
@@ -24,25 +25,14 @@ public class daoAdministradorImp implements daoAdministrador {
             if (rs.next() == true) {
                 adm = new administrador();
                 adm.setIdAdministrador(rs.getInt("idAdministrador"));
-                adm.setIdTrabajador(rs.getInt("idTrabajador"));
+                daoTrabajador dt= new daoTrabajadorImp();
+                trabajador tt= dt.leer(rs.getInt("idTrabajador"));
+                adm.setTra(tt);
                 adm.setUsuario(rs.getString("usuario"));
                 adm.setClave(rs.getString("clave"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoAdministradorImp.validar()");
         }
         return adm;
     }
@@ -63,7 +53,7 @@ public class daoAdministradorImp implements daoAdministrador {
     }
 
     @Override
-    public administrador leer(int idAdministrador) throws Exception {
+    public administrador leer(int idAdministrador) {
         administrador adm = null;
         Conexion con;
         Connection cn = null;
@@ -79,26 +69,15 @@ public class daoAdministradorImp implements daoAdministrador {
             if (rs.next() == true) {
                 adm = new administrador();
                 adm.setIdAdministrador(rs.getInt("idAdministrador"));
-                adm.setIdTrabajador(rs.getInt("idTrabajador"));
+                daoTrabajador dt= new daoTrabajadorImp();
+                trabajador tt= dt.leer(rs.getInt("idTrabajador"));
+                adm.setTra(tt);
                 adm.setUsuario(rs.getString("usuario"));
                 adm.setClave(rs.getString("clave"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoAdministradorImp.leer()");
+        } 
         return adm;
     }
 
