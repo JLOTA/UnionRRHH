@@ -6,7 +6,6 @@ package persistencia;
 
 import java.util.List;
 import negocio.puestoLaboral;
-import util.utilEmpresa;
 
 /**
  *

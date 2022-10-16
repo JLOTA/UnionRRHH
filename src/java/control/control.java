@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.*;
 import persistencia.*;
-import util.*;
 
 @WebServlet(name = "control", urlPatterns = {"/control"})
 public class control extends HttpServlet {

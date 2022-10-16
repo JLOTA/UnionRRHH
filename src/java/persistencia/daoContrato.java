@@ -7,8 +7,6 @@ package persistencia;
 import java.util.List;
 import negocio.contrato;
 import negocio.tipoContrato;
-import util.utilContrato;
-
 /**
  *
  * @author usuario

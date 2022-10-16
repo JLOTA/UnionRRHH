@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import negocio.area;
 import negocio.puestoLaboral;
-import util.utilEmpresa;
 
 /**
  *
