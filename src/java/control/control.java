@@ -67,7 +67,7 @@ public class control extends HttpServlet {
                     request.setAttribute("contratos", contratos);
                     List<estado> estados = estDao.listar();
                     request.setAttribute("estados", estados);
-                    List<utilTrabajador> lista = traDao.listarFull();
+                    List<trabajador> lista = traDao.listar();
                     request.setAttribute("trabajadores", lista);
                     break;
                 case "Agregar":
@@ -85,10 +85,15 @@ public class control extends HttpServlet {
                     String cor = request.getParameter("cor");
                     String dir = request.getParameter("dir");
 
-                    t.setIdContrato(idCon);
-                    t.setIdEstado(2);
-                    t.setIdHorario(idHor);
-                    t.setIdPuestoLaboral(idPue);
+                    puestoLaboral plx = pulDao.leer(idPue);
+                    contrato cx= conDao.leer(idCon);
+                    horario hx= horDao.leer(idHor);
+                    estado ex = estDao.leer(2);
+                    
+                    t.setPueLab(plx);
+                    t.setCon(cx);
+                    t.setHor(hx);
+                    t.setEst(ex);
                     t.setDni(dni);
                     t.setNombres(nom);
                     t.setApePat(apePat);
@@ -121,10 +126,15 @@ public class control extends HttpServlet {
                     String co = request.getParameter("cor");
                     String di = request.getParameter("dir");
 
-                    t.setIdContrato(iCon);
-                    t.setIdEstado(2);
-                    t.setIdHorario(iHor);
-                    t.setIdPuestoLaboral(iPue);
+                    puestoLaboral plxx = pulDao.leer(iPue);
+                    contrato cxx= conDao.leer(iCon);
+                    horario hxx= horDao.leer(iHor);
+                    estado exx = estDao.leer(2);
+                    
+                    t.setPueLab(plxx);
+                    t.setCon(cxx);
+                    t.setHor(hxx);
+                    t.setEst(exx);
                     t.setDni(dn);
                     t.setNombres(no);
                     t.setApePat(apPat);
@@ -191,14 +201,15 @@ public class control extends HttpServlet {
                 case "listar":
                     List<area> areas = areDao.listar();
                     request.setAttribute("areas", areas);
-                    List<utilEmpresa> lista = pulDao.listarFull();
+                    List<puestoLaboral> lista = pulDao.listar();
                     request.setAttribute("puestos", lista);
                     break;
                 case "Agregar":
                     int idAre = Integer.parseInt(request.getParameter("idAre"));
+                    area ax= areDao.leer(idAre);
                     String pue = request.getParameter("pue");
                     String des = request.getParameter("des");
-                    pl.setIdArea(idAre);
+                    pl.setArea(ax);
                     pl.setPuestoLaboral(pue);
                     pl.setDescripcion(des);
                     pulDao.Registrar(pl);
@@ -212,9 +223,10 @@ public class control extends HttpServlet {
                     break;
                 case "Actualizar":
                     int idAres = Integer.parseInt(request.getParameter("idAre"));
+                    area axs= areDao.leer(idAres);
                     String pu = request.getParameter("pue");
                     String de = request.getParameter("des");
-                    pl.setIdArea(idAres);
+                    pl.setArea(axs);
                     pl.setPuestoLaboral(pu);
                     pl.setDescripcion(de);
                     pl.setIdPuestoLaboral(idPu);
@@ -353,7 +365,7 @@ public class control extends HttpServlet {
                 case "listar":
                     List<tipoContrato> tipos = conDao.listarTipo();
                     request.setAttribute("tipos", tipos);
-                    List<utilContrato> lista = conDao.listarFull();
+                    List<contrato> lista = conDao.listar();
                     request.setAttribute("contratos", lista);
                     break;
                 case "Agregar":
@@ -361,7 +373,8 @@ public class control extends HttpServlet {
                     String des = request.getParameter("des");
                     String fecIni = request.getParameter("fecIni");
                     String fecFin = request.getParameter("fecFin");
-                    c.setIdTipoContrato(idTip);
+                    tipoContrato tc=new daoContratoImp().leerTipo(idTip);
+                    c.setTipCon(tc);
                     c.setDescripcion(des);
                     c.setFechaInicio(fecIni);
                     c.setFechaFin(fecFin);
@@ -379,7 +392,8 @@ public class control extends HttpServlet {
                     String de = request.getParameter("des");
                     String feIni = request.getParameter("fecIni");
                     String feFin = request.getParameter("fecFin");
-                    c.setIdTipoContrato(iTip);
+                    tipoContrato tcc=new daoContratoImp().leerTipo(iTip);
+                    c.setTipCon(tcc);
                     c.setDescripcion(de);
                     c.setFechaInicio(feIni);
                     c.setFechaFin(feFin);

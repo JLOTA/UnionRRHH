@@ -9,15 +9,17 @@ package negocio;
  * @author usuario
  */
 public class vacaciones {
-    private int idVacaciones, idTrabajador;
+
+    private int idVacaciones;
+    private trabajador tra;
     private String fechaInicio, fechaFin;
 
     public vacaciones() {
     }
 
-    public vacaciones(int idVacaciones, int idTrabajador, String fechaInicio, String fechaFin) {
+    public vacaciones(int idVacaciones, trabajador tra, String fechaInicio, String fechaFin) {
         this.idVacaciones = idVacaciones;
-        this.idTrabajador = idTrabajador;
+        this.tra = tra;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
@@ -30,12 +32,12 @@ public class vacaciones {
         this.idVacaciones = idVacaciones;
     }
 
-    public int getIdTrabajador() {
-        return idTrabajador;
+    public trabajador getTra() {
+        return tra;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setTra(trabajador tra) {
+        this.tra = tra;
     }
 
     public String getFechaInicio() {
@@ -54,5 +56,4 @@ public class vacaciones {
         this.fechaFin = fechaFin;
     }
 
-    
 }

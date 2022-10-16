@@ -9,17 +9,19 @@ package negocio;
  * @author usuario
  */
 public class pago {
-    private int idPago, idtipoPago, idTrabajador;
+    private int idPago;
+    private tipoPago tipPag;
+    private trabajador tra;
     private String fechaPago;
     private double sueldoBase, seguro, asignacionFamiliar;
 
     public pago() {
     }
 
-    public pago(int idPago, int idtipoPago, int idTrabajador, String fechaPago, double sueldoBase, double seguro, double asignacionFamiliar) {
+    public pago(int idPago, tipoPago tipPag, trabajador tra, String fechaPago, double sueldoBase, double seguro, double asignacionFamiliar) {
         this.idPago = idPago;
-        this.idtipoPago = idtipoPago;
-        this.idTrabajador = idTrabajador;
+        this.tipPag = tipPag;
+        this.tra = tra;
         this.fechaPago = fechaPago;
         this.sueldoBase = sueldoBase;
         this.seguro = seguro;
@@ -34,20 +36,20 @@ public class pago {
         this.idPago = idPago;
     }
 
-    public int getIdtipoPago() {
-        return idtipoPago;
+    public tipoPago getTipPag() {
+        return tipPag;
     }
 
-    public void setIdtipoPago(int idtipoPago) {
-        this.idtipoPago = idtipoPago;
+    public void setTipPag(tipoPago tipPag) {
+        this.tipPag = tipPag;
     }
 
-    public int getIdTrabajador() {
-        return idTrabajador;
+    public trabajador getTra() {
+        return tra;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setTra(trabajador tra) {
+        this.tra = tra;
     }
 
     public String getFechaPago() {
@@ -82,5 +84,5 @@ public class pago {
         this.asignacionFamiliar = asignacionFamiliar;
     }
 
-    
+        
 }

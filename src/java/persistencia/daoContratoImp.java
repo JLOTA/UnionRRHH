@@ -143,7 +143,7 @@ public class daoContratoImp implements daoContrato{
 
         sql = "Insert Into contrato "
                 + "Values(0, '"
-                + contrato.getIdTipoContrato()+ "', '"
+                + contrato.getTipCon().getIdTipoContrato()+ "', '"
                 + contrato.getDescripcion()+ "', '"
                 + contrato.getFechaInicio()+ "', '"
                 + contrato.getFechaFin()+ "')";
@@ -178,7 +178,8 @@ public class daoContratoImp implements daoContrato{
             while (rs.next() == true) {
                 hor = new contrato();
                 hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdTipoContrato(rs.getInt("idTipoContrato"));
+                tipoContrato tc = leerTipo(rs.getInt("idTipoContrato"));
+                hor.setTipCon(tc);
                 hor.setDescripcion(rs.getString("descripcion"));
                 hor.setFechaInicio(rs.getString("fechaInicio"));
                 hor.setFechaFin(rs.getString("fechaFin"));
@@ -199,7 +200,7 @@ public class daoContratoImp implements daoContrato{
         String sql;
 
         sql = "UPDATE contrato SET idTipoContrato = "
-                + contrato.getIdTipoContrato()+ ", descripcion = '"
+                + contrato.getTipCon().getIdTipoContrato()+ ", descripcion = '"
                 + contrato.getDescripcion()+ "', fechaInicio = '"
                 + contrato.getFechaInicio()+ "', fechaFin = '"
                 + contrato.getFechaFin()+ "' WHERE idContrato = " + contrato.getIdContrato();
@@ -231,7 +232,8 @@ public class daoContratoImp implements daoContrato{
             if (rs.next() == true) {
                 hor = new contrato();
                 hor.setIdContrato(rs.getInt("idContrato"));
-                hor.setIdTipoContrato(rs.getInt("idTipoContrato"));
+                tipoContrato tc = leerTipo(rs.getInt("idTipoContrato"));
+                hor.setTipCon(tc);
                 hor.setDescripcion(rs.getString("descripcion"));
                 hor.setFechaInicio(rs.getString("fechaInicio"));
                 hor.setFechaFin(rs.getString("fechaFin"));

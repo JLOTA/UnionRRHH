@@ -25,15 +25,15 @@
                         </div>
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" value="${area.getArea()}" name="des" class="form-control form-control-sm">
+                            <input type="text" value="${contrato.getDescripcion()}" name="des" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label>Fecha de inicio</label>
-                            <input type="date" value="${area.getArea()}" name="fecIni" class="form-control form-control-sm">
+                            <input type="date" value="${contrato.getFechaInicio()}" name="fecIni" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label>Fecha de termino</label>
-                            <input type="date" value="${area.getArea()}" name="fecFin" class="form-control form-control-sm">
+                            <input type="date" value="${contrato.getFechaFin()}" name="fecFin" class="form-control form-control-sm">
                         </div><br>
                         <input type="submit" name="acc" value="Agregar" class="btn btn-info btn-outline-light">
                         <input type="submit" name="acc" value="Actualizar" class="btn btn-success btn-outline-light">
@@ -54,7 +54,7 @@
                     <tbody>
                         <c:forEach var="c" items="${contratos}">
                             <tr>
-                                <td>${c.getTipoContrato()}</td>
+                                <td>${c.getTipCon().getTipoContrato()}</td>
                                 <td>${c.getDescripcion()}</td>
                                 <td>${c.getFechaInicio()}</td>
                                 <td>${c.getFechaFin()}</td>

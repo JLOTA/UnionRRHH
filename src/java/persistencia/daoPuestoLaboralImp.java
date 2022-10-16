@@ -7,6 +7,7 @@ package persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import negocio.area;
 import negocio.puestoLaboral;
 import util.utilEmpresa;
 
@@ -24,7 +25,7 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
 
         sql = "Insert Into puestoLaboral "
                 + "Values(0, '"
-                + puestoLaboral.getIdArea()+ "', '"
+                + puestoLaboral.getArea().getIdArea()+ "', '"
                 + puestoLaboral.getPuestoLaboral()+ "', '"
                 + puestoLaboral.getDescripcion()+ "')";
 
@@ -58,7 +59,10 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             while (rs.next() == true) {
                 hor = new puestoLaboral();
                 hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdArea(rs.getInt("idArea"));
+                area a= new area();
+                daoArea da = new daoAreaImp();
+                a=da.leer(rs.getInt("idArea"));
+                hor.setArea(a);
                 hor.setPuestoLaboral(rs.getString("puestoLaboral"));
                 hor.setDescripcion(rs.getString("descripcion"));
 
@@ -78,7 +82,7 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
         String sql;
 
         sql = "UPDATE puestoLaboral SET idArea = "
-                + puestoLaboral.getIdArea()+ ", puestoLaboral = '"
+                + puestoLaboral.getArea().getIdArea()+ ", puestoLaboral = '"
                 + puestoLaboral.getPuestoLaboral()+ "', descripcion = '"
                 + puestoLaboral.getDescripcion()+ "' WHERE idPuestoLaboral = " + puestoLaboral.getIdPuestoLaboral();
 
@@ -109,8 +113,11 @@ public class daoPuestoLaboralImp implements daoPuestoLaboral{
             if (rs.next() == true) {
                 hor = new puestoLaboral();
                 hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
-                hor.setIdArea(rs.getInt("idArea"));
-                hor.setPuestoLaboral(rs.getString("puestolaboral"));
+                area a= new area();
+                daoArea da = new daoAreaImp();
+                a=da.leer(rs.getInt("idArea"));
+                hor.setArea(a);
+                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
                 hor.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {

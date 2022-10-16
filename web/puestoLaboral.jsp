@@ -50,7 +50,7 @@
                     <tbody>
                         <c:forEach var="pu" items="${puestos}">
                             <tr>
-                                <td>${pu.getArea()}</td>
+                                <td>${pu.getArea().getArea()}</td>
                                 <td>${pu.getPuestoLaboral()}</td>
                                 <td>${pu.getDescripcion()}</td>
                                 <td>
