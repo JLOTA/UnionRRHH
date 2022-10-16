@@ -7,21 +7,23 @@ package persistencia;
 import java.util.List;
 import negocio.contrato;
 import negocio.tipoContrato;
+import util.utilContrato;
 
 /**
  *
  * @author usuario
  */
 public interface daoContrato {
-    public void RegistrarTipo(tipoContrato tipoContrato) throws Exception;
-    public List<tipoContrato> listarTipo() throws Exception;
-    public void actualizarTipo(tipoContrato tipoContrato) throws Exception;
-    public tipoContrato leerTipo(int idTipo ) throws Exception;
-    public void eliminarTipo(int idtipo) throws Exception;
+    public void RegistrarTipo(tipoContrato tipoContrato);
+    public List<tipoContrato> listarTipo();
+    public void actualizarTipo(tipoContrato tipoContrato);
+    public tipoContrato leerTipo(int idTipo );
+    public void eliminarTipo(int idtipo);
     
-    public void Registrar(contrato contrato) throws Exception;
-    public List<contrato> listar() throws Exception;
-    public void actualizar(contrato contrato) throws Exception;
-    public contrato leer(int idContrato ) throws Exception;
-    public void eliminar(int idContrato) throws Exception;
+    public void Registrar(contrato contrato);
+    public List<contrato> listar();
+    public List<utilContrato> listarFull();
+    public void actualizar(contrato contrato);
+    public contrato leer(int idContrato );
+    public void eliminar(int idContrato);
 }

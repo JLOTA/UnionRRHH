@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.*;
 import persistencia.*;
-import util.utilEmpresa;
+import util.*;
 
 @WebServlet(name = "control", urlPatterns = {"/control"})
 public class control extends HttpServlet {
@@ -21,15 +21,24 @@ public class control extends HttpServlet {
     administrador adm = new administrador();
 
     daoTrabajador traDao = new daoTrabajadorImp();
-    trabajador tra = new trabajador();
+    trabajador t = new trabajador();
+    int idTr = 0;
 
     daoArea areDao = new daoAreaImp();
     area a = new area();
     int idAr = 0;
+    
+    daoContrato conDao = new daoContratoImp();
+    contrato c = new contrato();
+    int idCo = 0;
 
     daoHorario horDao = new daoHorarioImp();
     horario h = new horario();
     int idHo = 0;
+    
+    daoEstado estDao = new daoEstadoImp();
+    estado e = new estado();
+    int idEs = 0;
     
     daoPuestoLaboral pulDao = new daoPuestoLaboralImp();
     puestoLaboral pl = new puestoLaboral();
@@ -46,12 +55,88 @@ public class control extends HttpServlet {
         if (menu.equals("trabajador")) {
             switch (acc) {
                 case "listar":
+                    List<puestoLaboral> puestos = pulDao.listar();
+                    request.setAttribute("puestos", puestos);
+                    List<horario> horarios = horDao.listar();
+                    request.setAttribute("horarios", horarios);
+                    List<contrato> contratos = conDao.listar();
+                    request.setAttribute("contratos", contratos);
+                    List<estado> estados = estDao.listar();
+                    request.setAttribute("estados", estados);
+                    List<utilTrabajador> lista = traDao.listarFull();
+                    request.setAttribute("trabajadores", lista);
                     break;
-                case "agregar":
+                case "Agregar":
+                    int idPue = Integer.parseInt(request.getParameter("idPue"));
+                    int idCon = Integer.parseInt(request.getParameter("idCon"));
+                    int idHor = Integer.parseInt(request.getParameter("idHor"));
+                    //int idEst = Integer.parseInt(request.getParameter("idEst"));
+                    
+                    String dni = request.getParameter("dni");
+                    String nom = request.getParameter("nom");
+                    String apePat = request.getParameter("apePat");
+                    String apeMat = request.getParameter("apeMat");
+                    String fecNac = request.getParameter("fecNac");
+                    String tel = request.getParameter("tel");
+                    String cor = request.getParameter("cor");
+                    String dir = request.getParameter("dir");
+                    
+                    t.setIdContrato(idCon);
+                    t.setIdEstado(2);
+                    t.setIdHorario(idHor);
+                    t.setIdPuestoLaboral(idPue);
+                    t.setDni(dni);
+                    t.setNombres(nom);
+                    t.setApePat(apePat);
+                    t.setApeMat(apeMat);
+                    t.setFecNac(fecNac);
+                    t.setCorreo(cor);
+                    t.setTelefono(tel);
+                    t.setDireccion(dir);
+                    traDao.Registrar(t);
+                    request.getRequestDispatcher("control?menu=trabajador&acc=listar").forward(request, response);
                     break;
                 case "editar":
+                    idTr = Integer.parseInt(request.getParameter("id"));
+                    trabajador tt = traDao.leer(idTr);
+                    request.setAttribute("trabajador", tt);
+                    request.getRequestDispatcher("control?menu=trabajador&acc=listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    int iPue = Integer.parseInt(request.getParameter("idPue"));
+                    int iCon = Integer.parseInt(request.getParameter("idCon"));
+                    int iHor = Integer.parseInt(request.getParameter("idHor"));
+                    //int iEst = Integer.parseInt(request.getParameter("idEst"));
+                    
+                    String dn = request.getParameter("dni");
+                    String no = request.getParameter("nom");
+                    String apPat = request.getParameter("apePat");
+                    String apMat = request.getParameter("apeMat");
+                    String feNac = request.getParameter("fecNac");
+                    String te = request.getParameter("tel");
+                    String co = request.getParameter("cor");
+                    String di = request.getParameter("dir");
+                    
+                    t.setIdContrato(iCon);
+                    t.setIdEstado(2);
+                    t.setIdHorario(iHor);
+                    t.setIdPuestoLaboral(iPue);
+                    t.setDni(dn);
+                    t.setNombres(no);
+                    t.setApePat(apPat);
+                    t.setApeMat(apMat);
+                    t.setFecNac(feNac);
+                    t.setCorreo(co);
+                    t.setTelefono(te);
+                    t.setDireccion(di);
+                    t.setIdTrabajador(idTr);
+                    traDao.actualizar(t);
+                    request.getRequestDispatcher("control?menu=trabajador&acc=listar").forward(request, response);
                     break;
                 case "eliminar":
+                    idTr = Integer.parseInt(request.getParameter("id"));
+                    traDao.eliminar(idTr);
+                    request.getRequestDispatcher("control?menu=trabajador&acc=listar").forward(request, response);
                     break;
                 default:
                     throw new AssertionError();
@@ -203,12 +288,46 @@ public class control extends HttpServlet {
         if (menu.equals("contrato")) {
             switch (acc) {
                 case "listar":
+                    List<tipoContrato> tipos = conDao.listarTipo();
+                    request.setAttribute("tipos", tipos);
+                    List<utilContrato> lista = conDao.listarFull();
+                    request.setAttribute("contratos", lista);
                     break;
-                case "agregar":
+                case "Agregar":
+                    int idTip = Integer.parseInt(request.getParameter("idTip"));
+                    String des = request.getParameter("des");
+                    String fecIni = request.getParameter("fecIni");
+                    String fecFin = request.getParameter("fecFin");
+                    c.setIdTipoContrato(idTip);
+                    c.setDescripcion(des);
+                    c.setFechaInicio(fecIni);
+                    c.setFechaFin(fecFin);
+                    conDao.Registrar(c);
+                    request.getRequestDispatcher("control?menu=contrato&acc=listar").forward(request, response);
                     break;
                 case "editar":
+                    idCo = Integer.parseInt(request.getParameter("id"));
+                    contrato cc = conDao.leer(idCo);
+                    request.setAttribute("contrato", cc);
+                    request.getRequestDispatcher("control?menu=contrato&acc=listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    int iTip = Integer.parseInt(request.getParameter("idTip"));
+                    String de = request.getParameter("des");
+                    String feIni = request.getParameter("fecIni");
+                    String feFin = request.getParameter("fecFin");
+                    c.setIdTipoContrato(iTip);
+                    c.setDescripcion(de);
+                    c.setFechaInicio(feIni);
+                    c.setFechaFin(feFin);
+                    c.setIdContrato(idCo);
+                    conDao.actualizar(c);
+                    request.getRequestDispatcher("control?menu=contrato&acc=listar").forward(request, response);
                     break;
                 case "eliminar":
+                    idCo = Integer.parseInt(request.getParameter("id"));
+                    conDao.eliminar(idCo);
+                    request.getRequestDispatcher("control?menu=contrato&acc=listar").forward(request, response);
                     break;
                 default:
                     throw new AssertionError();

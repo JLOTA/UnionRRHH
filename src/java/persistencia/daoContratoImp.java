@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import negocio.contrato;
 import negocio.tipoContrato;
+import util.utilContrato;
 
 /**
  *
@@ -17,7 +18,7 @@ import negocio.tipoContrato;
 public class daoContratoImp implements daoContrato{
 
     @Override
-    public void RegistrarTipo(tipoContrato tipoContrato) throws Exception {
+    public void RegistrarTipo(tipoContrato tipoContrato){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -35,21 +36,12 @@ public class daoContratoImp implements daoContrato{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.RegistrarTipo()");
+        } 
     }
 
     @Override
-    public List<tipoContrato> listarTipo() throws Exception {
+    public List<tipoContrato> listarTipo() {
         List<tipoContrato> tipos = null;
         tipoContrato hor;
         Conexion con;
@@ -73,26 +65,13 @@ public class daoContratoImp implements daoContrato{
                 tipos.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.listarTipo()");
+        } 
         return tipos;
     }
 
     @Override
-    public void actualizarTipo(tipoContrato tipoContrato) throws Exception {
+    public void actualizarTipo(tipoContrato tipoContrato) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -108,21 +87,12 @@ public class daoContratoImp implements daoContrato{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.actualizarTipo()");
+        } 
     }
 
     @Override
-    public tipoContrato leerTipo(int idTipo) throws Exception {
+    public tipoContrato leerTipo(int idTipo) {
         tipoContrato hor = null;
         Conexion con;
         Connection cn = null;
@@ -142,26 +112,13 @@ public class daoContratoImp implements daoContrato{
                 hor.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.leerTipo()");
+        } 
         return hor;
     }
 
     @Override
-    public void eliminarTipo(int idtipo) throws Exception {
+    public void eliminarTipo(int idtipo) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -173,12 +130,12 @@ public class daoContratoImp implements daoContrato{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoContratoImp.eliminarTipo()");
         }
     }
 
     @Override
-    public void Registrar(contrato contrato) throws Exception {
+    public void Registrar(contrato contrato) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -198,21 +155,12 @@ public class daoContratoImp implements daoContrato{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.Registrar()");
+        } 
     }
 
     @Override
-    public List<contrato> listar() throws Exception {
+    public List<contrato> listar() {
         List<contrato> contratos = null;
         contrato hor;
         Conexion con;
@@ -238,26 +186,13 @@ public class daoContratoImp implements daoContrato{
                 contratos.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.listar()");
+        } 
         return contratos;
     }
 
     @Override
-    public void actualizar(contrato contrato) throws Exception {
+    public void actualizar(contrato contrato){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -275,21 +210,12 @@ public class daoContratoImp implements daoContrato{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.actualizar()");
+        } 
     }
 
     @Override
-    public contrato leer(int idContrato) throws Exception {
+    public contrato leer(int idContrato) {
         contrato hor = null;
         Conexion con;
         Connection cn = null;
@@ -311,26 +237,13 @@ public class daoContratoImp implements daoContrato{
                 hor.setFechaFin(rs.getString("fechaFin"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoContratoImp.leer()");
+        } 
         return hor;
     }
 
     @Override
-    public void eliminar(int idContrato) throws Exception {
+    public void eliminar(int idContrato) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -342,8 +255,42 @@ public class daoContratoImp implements daoContrato{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoContratoImp.eliminar()");
         }
+    }
+
+    @Override
+    public List<utilContrato> listarFull() {
+        List<utilContrato> contratos = null;
+        utilContrato hor;
+        Conexion con;
+        Connection cn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        String sql = "SELECT c.idContrato, c.idTipoContrato, tc.tipoContrato, c.descripcion, "
+                + "c.fechaInicio, c.fechaFin FROM contrato c inner join tipocontrato tc "
+                + "on c.idTipoContrato = tc.idTipoContrato order by c.idContrato";
+
+        con = new Conexion();
+        try {
+            cn = con.conectar();
+            st = cn.createStatement();
+            rs = st.executeQuery(sql);
+            contratos = new ArrayList<>();
+            while (rs.next() == true) {
+                hor = new utilContrato();
+                hor.setIdContrato(rs.getInt("idContrato"));
+                hor.setIdTipoContrato(rs.getInt("idTipoContrato"));
+                hor.setDescripcion(rs.getString("descripcion"));
+                hor.setFechaInicio(rs.getString("fechaInicio"));
+                hor.setFechaFin(rs.getString("fechaFin"));
+                hor.setTipoContrato(rs.getString("tipoContrato"));
+                contratos.add(hor);
+            }
+        } catch (Exception e) {
+            System.out.println("persistencia.daoContratoImp.listarFull()");
+        } 
+        return contratos;
     }
     
 }

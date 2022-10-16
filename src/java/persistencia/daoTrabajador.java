@@ -6,15 +6,17 @@ package persistencia;
 
 import java.util.List;
 import negocio.trabajador;
+import util.utilTrabajador;
 
 /**
  *
  * @author usuario
  */
 public interface daoTrabajador {
-    public void Registrar(trabajador trabajador) throws Exception;
-    public List<trabajador> listar() throws Exception;
-    public void actualizar(trabajador trabajador) throws Exception;
-    public trabajador leer(int idTrabajador ) throws Exception;
-    public void eliminar(int idTrabajador) throws Exception;
+    public void Registrar(trabajador trabajador);
+    public List<trabajador> listar();
+    public List<utilTrabajador> listarFull();
+    public void actualizar(trabajador trabajador);
+    public trabajador leer(int idTrabajador );
+    public void eliminar(int idTrabajador);
 }

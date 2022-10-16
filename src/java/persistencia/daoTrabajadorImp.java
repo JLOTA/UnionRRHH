@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.*;
 import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
 import negocio.trabajador;
+import util.utilTrabajador;
 
 /**
  *
@@ -15,7 +16,7 @@ import negocio.trabajador;
  */
 public class daoTrabajadorImp implements daoTrabajador{
     @Override
-    public void Registrar(trabajador trabajador) throws Exception {
+    public void Registrar(trabajador trabajador){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -43,21 +44,12 @@ public class daoTrabajadorImp implements daoTrabajador{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoTrabajadorImp.Registrar()");
         }
     }
 
     @Override
-    public List<trabajador> listar() throws Exception {
+    public List<trabajador> listar() {
         List<trabajador> trabajadores = null;
         trabajador hor;
         Conexion con;
@@ -91,26 +83,13 @@ public class daoTrabajadorImp implements daoTrabajador{
                 trabajadores.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoTrabajadorImp.listar()");
+        } 
         return trabajadores;
     }
 
     @Override
-    public void actualizar(trabajador trabajador) throws Exception {
+    public void actualizar(trabajador trabajador){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -136,21 +115,12 @@ public class daoTrabajadorImp implements daoTrabajador{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoTrabajadorImp.actualizar()");
+        } 
     }
 
     @Override
-    public trabajador leer(int idTrabajador) throws Exception {
+    public trabajador leer(int idTrabajador){
         trabajador hor = null;
         Conexion con;
         Connection cn = null;
@@ -180,26 +150,13 @@ public class daoTrabajadorImp implements daoTrabajador{
                 hor.setDireccion(rs.getString("direccion"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
-        }
+            System.out.println("persistencia.daoTrabajadorImp.leer()");
+        } 
         return hor;
     }
 
     @Override
-    public void eliminar(int idTrabajador) throws Exception {
+    public void eliminar(int idTrabajador){
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -211,7 +168,57 @@ public class daoTrabajadorImp implements daoTrabajador{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoTrabajadorImp.eliminar()");
         }
     }
+
+    @Override
+    public List<utilTrabajador> listarFull() {
+        List<utilTrabajador> trabajadores = null;
+        utilTrabajador hor;
+        Conexion con;
+        Connection cn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        String sql = "SELECT t.idTrabajador, t.idPuestoLaboral, pl.puestoLaboral, t.idContrato, c.descripcion, t.idHorario, h.horario, t.idEstado, e.estado, t.dni, t.nombres, t.apellidoPaterno, t.apellidoMaterno, t.fechaNacimiento, t.telefono, t.correo, t.direccion FROM trabajador t \n" +
+"inner join puestolaboral pl on t.idPuestoLaboral = pl.idPuestoLaboral \n" +
+"inner join contrato c on t.idContrato = c.idContrato\n" +
+"inner join horario h on t.idHorario = h.idHorario\n" +
+"inner join estado e on t.idEstado = e.idEstado\n" +
+"order by t.idTrabajador";
+
+        con = new Conexion();
+        try {
+            cn = con.conectar();
+            st = cn.createStatement();
+            rs = st.executeQuery(sql);
+            trabajadores = new ArrayList<>();
+            while (rs.next() == true) {
+                hor = new utilTrabajador();
+                hor.setIdTrabajador(rs.getInt("idTrabajador"));
+                hor.setIdPuestoLaboral(rs.getInt("idPuestoLaboral"));
+                hor.setPuestoLaboral(rs.getString("puestoLaboral"));
+                hor.setIdContrato(rs.getInt("idContrato"));
+                hor.setContrato(rs.getString("descripcion"));
+                hor.setIdHorario(rs.getInt("idHorario"));
+                hor.setHorario(rs.getString("horario"));
+                hor.setIdEstado(rs.getInt("idEstado"));
+                hor.setEstado(rs.getString("estado"));
+                hor.setDni(rs.getString("dni"));
+                hor.setNombres(rs.getString("nombres"));
+                hor.setApePat(rs.getString("apellidoPaterno"));
+                hor.setApeMat(rs.getString("apellidoMaterno"));
+                hor.setFecNac(rs.getString("fechaNacimiento"));
+                hor.setTelefono(rs.getString("telefono"));
+                hor.setCorreo(rs.getString("correo"));
+                hor.setDireccion(rs.getString("direccion"));
+
+                trabajadores.add(hor);
+            }
+        } catch (Exception e) {
+            System.out.println("persistencia.daoTrabajadorImp.listarFull()");
+        } 
+        return trabajadores;
+    }
+    
 }

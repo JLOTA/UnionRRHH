@@ -8,9 +8,9 @@ import negocio.estado;
  * @author usuario
  */
 public interface daoEstado {
-    public void Registrar(estado estado) throws Exception;
-    public List<estado> listar() throws Exception;
-    public void actualizar(estado estado) throws Exception;
-    public estado leer(int idEstado ) throws Exception;
-    public void eliminar(int idEstado) throws Exception;
+    public void Registrar(estado estado);
+    public List<estado> listar();
+    public void actualizar(estado estado);
+    public estado leer(int idEstado );
+    public void eliminar(int idEstado);
 }

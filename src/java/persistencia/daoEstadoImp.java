@@ -15,7 +15,7 @@ import negocio.estado;
 public class daoEstadoImp implements daoEstado{
     
     @Override
-    public void Registrar(estado estado) throws Exception {
+    public void Registrar(estado estado) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -33,21 +33,12 @@ public class daoEstadoImp implements daoEstado{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoEstadoImp.Registrar()");
         }
     }
 
     @Override
-    public List<estado> listar() throws Exception {
+    public List<estado> listar() {
         List<estado> estados = null;
         estado hor;
         Conexion con;
@@ -71,26 +62,13 @@ public class daoEstadoImp implements daoEstado{
                 estados.add(hor);
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoEstadoImp.listar()");
         }
         return estados;
     }
 
     @Override
-    public void actualizar(estado estado) throws Exception {
+    public void actualizar(estado estado) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -106,21 +84,12 @@ public class daoEstadoImp implements daoEstado{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoEstadoImp.actualizar()");
         }
     }
 
     @Override
-    public estado leer(int idEstado) throws Exception {
+    public estado leer(int idEstado) {
         estado hor = null;
         Conexion con;
         Connection cn = null;
@@ -140,26 +109,13 @@ public class daoEstadoImp implements daoEstado{
                 hor.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (rs != null && rs.isClosed() == false) {
-                rs.close();
-            }
-            rs = null;
-            if (st != null && st.isClosed() == false) {
-                st.close();
-            }
-            st = null;
-            if (cn != null && cn.isClosed() == false) {
-                cn.close();
-            }
-            cn = null;
+            System.out.println("persistencia.daoEstadoImp.leer()");
         }
         return hor;
     }
 
     @Override
-    public void eliminar(int idEstado) throws Exception {
+    public void eliminar(int idEstado) {
         Conexion con;
         Connection cn = null;
         Statement st = null;
@@ -171,7 +127,7 @@ public class daoEstadoImp implements daoEstado{
             st = cn.createStatement();
             st.executeUpdate(sql);
         } catch (Exception e) {
-            throw e;
+            System.out.println("persistencia.daoEstadoImp.eliminar()");
         }
     }
     

@@ -1,16 +1,8 @@
-<%-- 
-    Document   : menu
-    Created on : 10-oct-2022, 17:29:52
-    Author     : usuario
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>Union RRHH | Inicio</title>
+        <title>Union RRHH</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-info">
@@ -24,7 +16,7 @@
                             Personas
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="control?menu=trabajador" target="myFrame">Empleados</a></li>
+                            <li><a class="dropdown-item" href="control?menu=trabajador&acc=listar" target="myFrame">Empleados</a></li>
                             <li><a class="dropdown-item" href="#" target="myFrame">Familiares</a></li>
                         </ul>
                     </li>
@@ -54,27 +46,28 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#" target="myFrame">Asistencia</a></li>
-                            <li><a class="dropdown-item" href="control?menu=contrato" target="myFrame">Contratos</a></li>
+                            <li><a class="dropdown-item" href="control?menu=contrato&acc=listar" target="myFrame">Contratos</a></li>
                         </ul>
                     </li>                    
                 </ul>    
             </div>
-            <div class="dropdown">
-                <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    ${trabajador.getNombres()} ${trabajador.getApePat()}
+            <div class="btn-group drop-start">
+                <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                    ${administrador.getUsuario()}
                 </button>
-                <div class="dropdown-menu text-center">
-                    <a class="dropdown-item" href="#">
+                <ul class="dropdown-menu text-center">
+                    <li><a class="dropdown-item" href="#">
                         <img src="img/usuario.png" alt="60" width="60"/>
-                    </a>
-                    <a class="dropdown-item" href="#">${administrador.getUsuario()}</a>
-                    <a class="dropdown-item" href="#">${trabajador.getCorreo()}</a>
-                    <div>
+                    </a></li>
+                    <li><a class="dropdown-item" href="#">${trabajador.getNombres()} ${trabajador.getApePat()}</a></li>
+                    <li><a class="dropdown-item" href="#">${trabajador.getCorreo()}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
                         <form action="validar" method="post">
                             <button name="acc" value="Salir" class="dropdown-item">Salir</button>
                         </form>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </nav>
         <div class="m-4" style="height: 550px;">

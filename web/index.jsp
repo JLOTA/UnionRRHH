@@ -1,8 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>JSP Page</title>
@@ -22,7 +20,7 @@
                             <input type="text" name="usu" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>ContraseÃ±a</label>
+                            <label>Contraseña</label>
                             <input type="password" name="pas" class="form-control">
                         </div><br>
                         <input type="submit" name="acc" value="Ingresar" class="btn btn-primary form-control">
